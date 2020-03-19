@@ -31,8 +31,8 @@ $(function() {
                 var ydaQuote = parseFloat(arr[2]);
                 var nowQuote = parseFloat(arr[3]);
 
-                $quoteTbl.find(".quote-name").append($("<th>").text(quoteName));
-                $quoteTbl.find(".yda-quote").append($("<th>").text(ydaQuote));
+
+                $quoteTbl.find("thead tr").append($("<th>").text(quoteName));
 
                 pricePercent.forEach(percent => {
                     var $row = $quoteTbl.find(".percent_" + percent*100);
