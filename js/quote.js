@@ -44,7 +44,8 @@ $(function() {
                 });
 
             });
-            $("body").fadeIn("fast");
         }
+      }).always(() => {
+          mask.hide();
       });
 });
