@@ -4,9 +4,10 @@ $(function() {
 
     var quoteIDs = ["sh510050", "sh510300"];
     var $quoteTbl = $(".quote-tbl");
+    var priceStep = 1;
 
 
-    for (var i = 10; i >= -10; i = i - 0.5) {
+    for (var i = 10; i >= -10; i = i - priceStep) {
         var $tr = $("<tr>");
         $tr.addClass("percent-" + i*100);
 
@@ -32,7 +33,7 @@ $(function() {
                 $quoteTbl.find(".quote-name").append($("<th>").text(quoteName));
                 $quoteTbl.find(".yda-quote").append($("<th>").text(ydaQuote));
 
-                for (var i = 10; i >= -10; i = i - 0.5) {
+                for (var i = 10; i >= -10; i = i - priceStep) {
                     var $row = $quoteTbl.find(".percent-" + i*100);
                     var $td = $("<td>");
                     var price = ydaQuote + ydaQuote*i/100;
