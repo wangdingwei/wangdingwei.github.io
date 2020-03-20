@@ -28,8 +28,14 @@ $(function() {
                 var arr = window["hq_str_" + id].split(",");
                 console.log(arr);
                 var quoteName = arr[0];
-                var ydaQuote = parseFloat(arr[2]);
+                var lastQuote = parseFloat(arr[2]);
                 var nowQuote = parseFloat(arr[3]);
+
+                var nowPercent = (nowQuote - lastQuote)*100.0/lastQuote;
+                nowPercent = Number(nowPercent).toFixed(2);
+
+                $quoteTbl.find(".last-quote").append($("<td>").text(lastQuote));
+                $quoteTbl.find(".now-quote").append($("<td>").text(nowQuote + "(" + nowPercent + "%)"));
 
 
                 $quoteTbl.find("thead tr").append($("<th>").text(quoteName));
@@ -37,9 +43,15 @@ $(function() {
                 pricePercent.forEach(percent => {
                     var $row = $quoteTbl.find(".percent_" + percent*100);
                     var $td = $("<td>");
-                    var price = ydaQuote + ydaQuote*percent/100;
+                    var price = lastQuote + lastQuote*percent/100;
                     price = Number(price).toFixed(3);
-                    $td.text(price);
+
+                    var qty = parseInt(10000/price);
+
+                    $td.text(price + "(" + qty + ")");
+
+
+
                     $row.append($td);
                 });
 
