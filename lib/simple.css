@@ -13,6 +13,11 @@ table {
     border-spacing: 0px;
 }
 
+
+.hide {
+	display: none;
+}
+
 .text-left {
   text-align: left;
 }
