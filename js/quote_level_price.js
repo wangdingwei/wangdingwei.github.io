@@ -48,7 +48,12 @@ $(function() {
         cache: "true",
         success: function() {
             quoteIDs.forEach(id => {
-                var arr = window["hq_str_" + id].split(",");
+                var rslt = window["hq_str_" + id]; 
+                if (!rslt || rslt == "") {
+                    toptip.show("not found: " + id);
+                    return;
+                }
+                var arr = rslt.split(",");
                 console.log(arr);
                 var quoteName = arr[0];
                 var lastQuote = parseFloat(arr[2]);
