@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+    <title>level price</title>
+
+
+
+    <!-- css -->
+    <link rel="stylesheet" href="../lib/pure-min.css" />
+    <link rel="stylesheet" href="../lib/simple.css" />
+
+    <style type="text/css">
+        body {
+            margin: 5px;
+        }
+
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+
+        table {
+            width: 100%;
+        }
+
+
+        table {
+            text-align: left;
+            position: relative;
+        }
+        th {
+            background: #e0e0e0;
+            position: sticky;
+            top: 0;
+        }
+
+
+
+    </style>
+</head>
+
+
+<body>
+    <script type="text/javascript" charset="UTF-8" src="../lib/mask.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var mask = new Mask();
+        mask.show();
+    </script>
+    <div id="main">
+
+        <table class="pure-table pure-table-striped quote-tbl">
+            <thead>
+                <tr class="">
+                    <th class="text-right">#</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                <!--
+            <tr> <td></td> </tr>
+            -->
+                <tr class="last-quote">
+                    <td class="text-right">昨收</td>
+                </tr>
+                <tr class="now-quote">
+                    <td class="text-right">当前</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <script type="text/javascript" charset="UTF-8" src="../lib/jquery.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../js/quote_level_price.js"></script>
+
+    </div>
+</body>
+
+</html>
