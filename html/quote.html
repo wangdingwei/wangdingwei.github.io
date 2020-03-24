@@ -29,14 +29,10 @@
         }
 
 
-        tr {
-            height: 90px;
-        }
-
         table {
             width: 100%;
-            border-collapse: collapse;
         }
+
 
         table {
             text-align: left;
@@ -65,20 +61,22 @@
         <table class="pure-table pure-table-striped quote-tbl">
             <thead>
                 <tr class="">
-                    <th class="text-right">#</th>
+                    <th class="">name</th>
+                    <th class="">id</th>
+                    <th class="">昨收</td>
+                    <th class="">当前</td>
+                    <th class="">涨跌</td>
                 </tr>
             </thead>
 
 
             <tbody>
-                <!--
-            <tr> <td></td> </tr>
-            -->
-                <tr class="last-quote">
-                    <td class="text-right">昨收</td>
-                </tr>
-                <tr class="now-quote">
-                    <td class="text-right">当前</td>
+                <tr class="quote-row-tmpl hide">
+                    <td class="quote-name"><a></a></td>
+                    <td class="quote-id"><a></a></td>
+                    <td class="last-quote"></td>
+                    <td class="now-quote"></td>
+                    <td class="percent"></td>
                 </tr>
             </tbody>
         </table>

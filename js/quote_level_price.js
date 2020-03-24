@@ -42,6 +42,8 @@ $(function() {
     });
 
 
+    var notFoundQuotes = [];
+
     $.ajax({
         url: "//hq.sinajs.cn/list=" + quoteIDs.join(","),
         dataType: "script",
@@ -50,7 +52,7 @@ $(function() {
             quoteIDs.forEach(id => {
                 var rslt = window["hq_str_" + id]; 
                 if (!rslt || rslt == "") {
-                    toptip.show("not found: " + id);
+                    notFoundQuotes.push(id);
                     return;
                 }
                 var arr = rslt.split(",");
@@ -84,8 +86,15 @@ $(function() {
                 });
 
             });
+
+            if (notFoundQuotes.length > 0) {
+                $quoteTbl.hide();
+                toptip.show("not found: " + notFoundQuotes);
+            }
         }
       }).always(() => {
           mask.hide();
       });
+
+
 });
