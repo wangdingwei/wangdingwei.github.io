@@ -13,12 +13,13 @@ $(function() {
 
     var id = getUrlPara("id", "");
 
-    $(".id-form").submit(evt => {
+    $(".id-form .submit").click(evt => {
         var id = $("#quote-id").val();
         if (id == "") {
             toptip.show("please input id", 3);
             return false;
         }
+        window.location = "?id=" + id;
     });
     $("#quote-id").val(id);
 
