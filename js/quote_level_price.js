@@ -2,12 +2,33 @@
 
 $(function() {
 
+    var toptip = new TopTip();
+
     var quoteIDs = [
-        "sh510050"
     ];
     var $quoteTbl = $(".quote-tbl");
     var pricePercent = [10, 8, 6, 5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 
                         -1, -1.5, -2, -2.5, -3, -3.5, -4, -4.5, -5, -6, -8, -10];
+
+
+    var id = getUrlPara("id", "");
+
+    $(".id-form").submit(evt => {
+        var id = $("#quote-id").val();
+        if (id == "") {
+            toptip.show("please input id", 3);
+            return false;
+        }
+    });
+    $("#quote-id").val(id);
+
+    if(id == "") {
+        $quoteTbl.hide();
+        mask.hide();
+        return;
+    } else {
+        quoteIDs = [id];
+    }
 
 
     pricePercent.forEach(percent => {
