@@ -19,7 +19,7 @@ $(function() {
             toptip.show("please input id", 3);
             return false;
         }
-        window.location = "?id=" + id;
+        window.location.replace("?id=" + id);
     });
     $("#quote-id").val(id);
 
