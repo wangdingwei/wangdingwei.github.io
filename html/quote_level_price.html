@@ -14,7 +14,10 @@
 
 
     <!-- css -->
+    <!--
     <link rel="stylesheet" href="../lib/pure-min.css" />
+    -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../lib/simple.css" />
 
     <style type="text/css">
@@ -38,14 +41,12 @@
             text-align: left;
             position: relative;
         }
+
         th {
             background: #e0e0e0;
             position: sticky;
             top: 0;
         }
-
-
-
     </style>
 </head>
 
@@ -58,19 +59,16 @@
     </script>
     <div id="main">
 
-        <form class="pure-form pure-g id-form" method="get" action="" style="margin: 10px 0px;">
-            <input class="pure-u-3-5" type="text" id="quote-id" name="id" placeholder="id">
-            <button class="pure-u-2-5 pure-button pure-button-primary submit" type="button" class="pure-button pure-button-primary">OK</button>
-            <!--
-            <div class="pure-u-3-5">
-            </div>
-            <div class="pure-u-2-5">
-            </div>
-            -->
-        </form>
 
-        <table class="pure-table pure-table-striped quote-tbl">
-            <thead>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" id="quote-id" name="id" placeholder="id">
+            <div class="input-group-append">
+                <span class="input-group-text submit" id="">OK</span>
+            </div>
+        </div>
+
+        <table class="table table-striped quote-tbl">
+            <thead class="thead-light">
                 <tr class="">
                     <th class="text-right">#</th>
                 </tr>
