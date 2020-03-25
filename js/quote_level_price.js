@@ -13,7 +13,7 @@ $(function() {
 
     var id = getUrlPara("id", "");
 
-    $(".id-form .submit").click(evt => {
+    $(".submit").click(evt => {
         var id = $("#quote-id").val();
         if (id == "") {
             toptip.show("please input id", 3);
