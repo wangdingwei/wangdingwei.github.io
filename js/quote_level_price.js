@@ -45,6 +45,9 @@ $(function() {
 
     var notFoundQuotes = [];
 
+
+
+
     $.ajax({
         url: "//hq.sinajs.cn/list=" + quoteIDs.join(","),
         dataType: "script",
@@ -61,6 +64,7 @@ $(function() {
                 var quoteName = arr[0];
                 var lastQuote = parseFloat(arr[2]);
                 var nowQuote = parseFloat(arr[3]);
+                var quoteTime = arr[31];
 
                 var nowPercent = (nowQuote - lastQuote)*100.0/lastQuote;
                 nowPercent = Number(nowPercent).toFixed(2);
@@ -69,7 +73,7 @@ $(function() {
                 $quoteTbl.find(".now-quote").append($("<td>").text(nowQuote + "(" + nowPercent + "%)"));
 
 
-                $quoteTbl.find("thead tr").append($("<th>").text(quoteName));
+                $quoteTbl.find("thead tr").append($("<th>").text(quoteName + "(" + quoteTime + ")"));
 
                 pricePercent.forEach(percent => {
                     var $row = $quoteTbl.find(".percent_" + percent*100);
