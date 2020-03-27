@@ -69,6 +69,9 @@ $(function() {
                 var nowPercent = (nowQuote - lastQuote)*100.0/lastQuote;
                 nowPercent = Number(nowPercent).toFixed(2);
 
+                
+                document.title = quoteName;
+
                 $quoteTbl.find(".last-quote").append($("<td>").text(lastQuote));
                 $quoteTbl.find(".now-quote").append($("<td>").text(nowQuote + "(" + nowPercent + "%)"));
 

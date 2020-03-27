@@ -34,9 +34,10 @@ $(function() {
                 nowPercent = Number(nowPercent).toFixed(2);
                 var strPercent = nowPercent >= 0 ? "+" + nowPercent + "%" : "-" + nowPercent + "%";
 
+
                 var $row = $quoteRowTmpl.clone();
-                $row.find(".quote-name a").text(quoteName).attr("href", "quote_level_price.html?id=" + id);
-                $row.find(".quote-id a").text(id).attr("href", "quote_level_price.html?id=" + id);
+                $row.find(".quote-name a").text(quoteName).attr("href", "quote_detail.html?id=" + id);
+                $row.find(".quote-id a").text(id).attr("href", "quote_detail.html?id=" + id);
                 $row.find(".last-quote").text(lastQuote);
                 $row.find(".now-quote").text(nowQuote);
                 $row.find(".percent").text(strPercent);
