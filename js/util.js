@@ -17,8 +17,8 @@ function parseSinaQuote(id, str) {
         info.quoteName = arr[13];
         info.lastQuote = parseFloat(arr[7]); // 昨收
         info.nowQuote = parseFloat(arr[0]);
-        info.date = parseFloat(arr[12]);
-        info.time = parseFloat(arr[6]);
+        info.date = arr[12];
+        info.time = arr[6];
     }
     else {
         info.quoteName = arr[0];
