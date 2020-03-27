@@ -59,29 +59,21 @@ $(function() {
                     notFoundQuotes.push(id);
                     return;
                 }
-                var arr = rslt.split(",");
-                console.log(arr);
-                var quoteName = arr[0];
-                var lastQuote = parseFloat(arr[2]);
-                var nowQuote = parseFloat(arr[3]);
-                var quoteTime = arr[31];
-
-                var nowPercent = (nowQuote - lastQuote)*100.0/lastQuote;
-                nowPercent = Number(nowPercent).toFixed(2);
-
-                
-                document.title = quoteName;
-
-                $quoteTbl.find(".last-quote").append($("<td>").text(lastQuote));
-                $quoteTbl.find(".now-quote").append($("<td>").text(nowQuote + "(" + nowPercent + "%)"));
+                var info = parseSinaQuote(id, rslt);
 
 
-                $quoteTbl.find("thead tr").append($("<th>").text(quoteName + "(" + quoteTime + ")"));
+                document.title = info.quoteName;
+
+                $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
+                $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
+
+
+                $quoteTbl.find("thead tr").append($("<th>").text(info.quoteName + "(" + info.time + ")"));
 
                 pricePercent.forEach(percent => {
                     var $row = $quoteTbl.find(".percent_" + percent*100);
                     var $td = $("<td>");
-                    var price = lastQuote + lastQuote*percent/100;
+                    var price = info.lastQuote + info.lastQuote*percent/100;
                     price = Number(price).toFixed(3);
 
                     var qty = parseInt(10000/price);
