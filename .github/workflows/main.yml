@@ -13,5 +13,6 @@ jobs:
       run: |
         pwd
         ls -l
+        find .
         ./purge-cache.sh
 
