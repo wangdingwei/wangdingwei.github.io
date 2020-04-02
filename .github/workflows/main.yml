@@ -9,6 +9,8 @@ jobs:
     name: purge
     runs-on: ubuntu-18.04
     steps:
+    - name: checkout
+      uses: actions/checkout@v2
     - name: purge
       run: |
         pwd
