@@ -10,5 +10,5 @@ jobs:
     runs-on: alpine
     steps:
     - name: purge
-    - run: ./purge-cache.sh
+      run: ./purge-cache.sh
 
