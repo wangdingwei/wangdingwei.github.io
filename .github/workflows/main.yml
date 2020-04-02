@@ -10,5 +10,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: purge
-      run: ./purge-cache.sh
+      run: |
+        pwd
+        ls -l
+        ./purge-cache.sh
 
