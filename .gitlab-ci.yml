@@ -11,3 +11,8 @@ pages:
     - public
   only:
   - master
+
+purge-cache
+  stage: deply
+  script:
+  - ./purge-cache.sh
