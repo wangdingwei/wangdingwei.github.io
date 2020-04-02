@@ -6,8 +6,8 @@ on: [push]
 
 jobs:
   build:
-    name: pure
-    runs-on: alpine
+    name: purge
+    runs-on: alpine:latest
     steps:
     - name: purge
       run: ./purge-cache.sh
