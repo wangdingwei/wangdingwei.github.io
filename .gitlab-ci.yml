@@ -19,5 +19,5 @@ purge-cache:
   stage: deploy
   script:
   - pwd
-  - ls
+  - ls -l
   - ./purge-cache.sh
