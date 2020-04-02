@@ -13,6 +13,6 @@ pages:
   - master
 
 purge-cache:
-  stage: deply
+  stage: deploy
   script:
   - ./purge-cache.sh
