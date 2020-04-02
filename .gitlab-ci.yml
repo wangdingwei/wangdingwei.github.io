@@ -12,7 +12,7 @@ pages:
   only:
   - master
 
-purge-cache
+purge-cache:
   stage: deply
   script:
   - ./purge-cache.sh
