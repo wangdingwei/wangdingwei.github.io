@@ -20,6 +20,7 @@ purge-cache:
   script:
   - pwd
   - ls -l
+  - apk add curl
   - ./purge-cache.sh
 
 
