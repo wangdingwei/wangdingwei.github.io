@@ -22,7 +22,9 @@
 .cproject
 .classpath
 
-
+### java ##
+WEB-INF/classes
+*.class
 
 
 ### vs code ###
