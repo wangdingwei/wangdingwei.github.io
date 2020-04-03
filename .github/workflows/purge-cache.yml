@@ -1,5 +1,5 @@
-# vim: set sw=2 sts=2 et:     
-# encoding: utf-8
+# vim: sw=2 et sts=2
+
 
 name: purge-cache
 on: [push]
