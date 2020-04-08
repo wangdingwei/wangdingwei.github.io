@@ -2,11 +2,14 @@
 
 image: alpine:latest
 
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+
 pages:
   stage: deploy
   script:
   - mkdir .public
-  - cp -r * .public
+  - cp -rv * .public
   - mv .public public
   artifacts:
     paths:
