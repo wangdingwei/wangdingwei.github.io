@@ -64,6 +64,8 @@ $(function() {
 
                 document.title = info.quoteName;
 
+                $quoteTbl.find("tr th:first-child").text(info.lastQuote);
+
                 $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
                 $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
 
