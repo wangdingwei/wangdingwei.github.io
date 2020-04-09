@@ -17,12 +17,6 @@ pages:
   only:
   - master
 
-purge-cache:
-  stage: deploy
-  script:
-  - pwd
-  - ls -l
-  - apk add curl
-  - ./purge-cache.sh
-
-
+include:
+  - remote: https://file.0770.xyz/gitlab/ci/pages.yml
+  - remote: https://file.0770.xyz/gitlab/ci/purge-cloudflare-cache.yml
