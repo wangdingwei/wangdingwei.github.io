@@ -2,7 +2,7 @@
 
 image: alpine:latest
 
-stage:
+stages:
   - deploy
   - post
 
