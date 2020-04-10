@@ -11,17 +11,6 @@ stages:
 variables:
   GIT_SUBMODULE_STRATEGY: normal
 
-pages:
-  stage: deploy
-  script:
-  - mkdir .public
-  - cp -rv * .public
-  - mv .public public
-  artifacts:
-    paths:
-    - public
-  only:
-  - master
 
 include:
   - remote: https://file.0770.xyz/gitlab/ci/get-404-page.yml
