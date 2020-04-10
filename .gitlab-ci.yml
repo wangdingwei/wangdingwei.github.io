@@ -1,5 +1,6 @@
 # vim: sw=2 et sts=2
 
+
 image: alpine:latest
 
 stages:
