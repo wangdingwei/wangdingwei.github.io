@@ -3,6 +3,7 @@
 image: alpine:latest
 
 stages:
+  - pre
   - deploy
   - post
 
@@ -22,5 +23,6 @@ pages:
   - master
 
 include:
+  - remote: https://file.0770.xyz/gitlab/ci/get-404-page.yml
   - remote: https://file.0770.xyz/gitlab/ci/pages.yml
   - remote: https://file.0770.xyz/gitlab/ci/purge-cloudflare-cache.yml
