@@ -10,6 +10,7 @@ $(function() {
         "sh600050",
         "sh601288",
         "sh601398",
+		"sh601186",
         "hf_CHA50CFD"
     ];
     var $quoteTbl = $(".quote-tbl");
