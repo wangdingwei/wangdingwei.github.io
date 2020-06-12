@@ -20,6 +20,13 @@ function parseSinaQuote(id, str) {
         info.date = arr[12];
         info.time = arr[6];
     }
+    else if(id.startsWith("hk")) {
+        info.quoteName = arr[0];
+        info.lastQuote = parseFloat(arr[3]); // 昨收
+        info.nowQuote = parseFloat(arr[6]);
+        info.date = arr[17];
+        info.time = arr[18];
+    }
     else {
         info.quoteName = arr[0];
         info.lastQuote = parseFloat(arr[2]); // 昨收
