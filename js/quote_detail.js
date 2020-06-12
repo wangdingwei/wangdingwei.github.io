@@ -13,14 +13,25 @@ $(function() {
 
     var id = getUrlPara("id", "");
 
-    $(".submit").click(evt => {
+    function submit() {
         var id = $("#quote-id").val();
         if (id == "") {
             toptip.show("please input id", 3);
             return false;
         }
         window.location.replace("?id=" + id);
+    }
+    $(".submit").click(evt => {
+        submit();
     });
+    $("#quote-id").keypress(evt => {
+        var keycode = (evt.keyCode ? evt.keyCode : evt.which);
+        if(keycode == '13'){
+            submit();
+        }
+    });
+
+
     $("#quote-id").val(id);
 
     if(id == "") {
