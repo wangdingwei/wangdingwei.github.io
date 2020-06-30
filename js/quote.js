@@ -2,6 +2,8 @@
 
 $(function() {
 
+    var isPlugin = getUrlPara("is_plugin", "") == "true";
+
     var quoteIDs = [
         "sh510050",
         "sh510300", 
@@ -37,8 +39,11 @@ $(function() {
 
 
                 var $row = $quoteRowTmpl.clone();
-                $row.find(".quote-name a").text(info.quoteName).attr("href", "quote_detail.html?id=" + id);
-                $row.find(".quote-id a").text(id).attr("href", "quote_detail.html?id=" + id);
+                if (isPlugin) {
+                    $row.find(".quote-name").text(info.quoteName);
+                } else {
+                    $row.find(".quote-name a").text(info.quoteName).attr("href", "quote_detail.html?id=" + id);
+                }
                 $row.find(".last-quote").text(info.lastQuote);
                 $row.find(".now-quote").text(info.nowQuote);
                 $row.find(".percent").text(info.percentStr);
