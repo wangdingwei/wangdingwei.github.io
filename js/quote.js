@@ -7,6 +7,7 @@ $(function() {
     var quoteIDs = [
         "rt_hk00700",
         "sh000001",
+        "sh000016",
         "sh510050",
         "sh510300", 
         "sh510900",
