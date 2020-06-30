@@ -5,10 +5,11 @@ $(function() {
     var isPlugin = getUrlPara("is_plugin", "") == "true";
 
     var quoteIDs = [
+        "rt_hk00700",
+        "sh000001",
         "sh510050",
         "sh510300", 
         "sh510900",
-        "hk00700",
         "sh601111",
         "sh600050",
         "sh601288",
@@ -23,7 +24,7 @@ $(function() {
 
     var notFoundQuotes = [];
     $.ajax({
-        url: "//hq.sinajs.cn/list=" + quoteIDs.join(","),
+        url: "https://hq.sinajs.cn/list=" + quoteIDs.join(","),
         dataType: "script",
         cache: "true",
         success: function() {

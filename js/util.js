@@ -1,4 +1,12 @@
 
+/**
+ * id
+ * quoteName
+ * lastQuote
+ * nowQuote
+ * date
+ * time
+ */
 function parseSinaQuote(id, str) {
     var info = {id: id};
     if (str == "") {
@@ -11,7 +19,7 @@ function parseSinaQuote(id, str) {
         debugStr.push(idx + " " + val);
         //console.log(idx, val);
     });
-    console.log("------ " + id + " ------\n" + debugStr.join("; "));
+    window.IsDebug && console.log("------ " + id + " ------\n" + debugStr.join("; "));
     if (id.startsWith("hf_")) { // 期货
         //info.name = arr[];
         info.quoteName = arr[13];
@@ -20,7 +28,7 @@ function parseSinaQuote(id, str) {
         info.date = arr[12];
         info.time = arr[6];
     }
-    else if(id.startsWith("hk")) {
+    else if(id.startsWith("hk") || id.startsWith("rt_hk")) {
         info.quoteName = arr[0];
         info.lastQuote = parseFloat(arr[3]); // 昨收
         info.nowQuote = parseFloat(arr[6]);
@@ -41,6 +49,7 @@ function parseSinaQuote(id, str) {
     info.percent = nowPercent;
     info.percentStr = nowPercent >= 0 ? "+" + nowPercent + "%" : nowPercent + "%"; 
 
-    console.log(info);
+    window.IsDebug && console.log(info);
     return info;
 }
+

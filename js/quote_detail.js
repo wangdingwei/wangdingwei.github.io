@@ -60,7 +60,7 @@ $(function() {
 
 
     $.ajax({
-        url: "//hq.sinajs.cn/list=" + quoteIDs.join(","),
+        url: "https://hq.sinajs.cn/list=" + quoteIDs.join(","),
         dataType: "script",
         cache: "true",
         success: function() {
