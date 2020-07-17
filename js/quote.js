@@ -2,7 +2,7 @@
 
 $(function() {
 
-    var isPlugin = getUrlPara("is_plugin", "") == "true";
+    var isPlugin = getUrlPara("from", "") == "plugin";
 
     var quoteIDs = [
         "rt_hk00700",
