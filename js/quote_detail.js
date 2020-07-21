@@ -89,9 +89,11 @@ $(function() {
                     var price = info.lastQuote + info.lastQuote*percent/100;
                     price = Number(price).toFixed(3);
 
+                    $td.text(price);
+                    /*
                     var qty = parseInt(10000/price);
-
                     $td.text(price + "(" + qty + ")");
+                    */
 
 
 
