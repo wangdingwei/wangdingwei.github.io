@@ -119,7 +119,9 @@ $(function() {
     });
     */
 
+    let $rslt = $("#rslt");
     $(".submit").click(() => {
+        $rslt.empty();
         let card = $("#card").val();
         console.log(card);
         let cn = new CardNo(card);
@@ -129,6 +131,7 @@ $(function() {
             //console.log(c, isValidate);
             if (isValidate) {
                 console.log(c, isValidate);
+                $rslt.append(c + "\n");
             }
         });
     });
