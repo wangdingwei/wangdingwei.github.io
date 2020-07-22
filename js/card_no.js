@@ -149,7 +149,8 @@ $(function() {
 
         function doRsltCards() {
             displayCnt = random(90, 110);
-            $rslt.append(cards);
+            // $rslt.append(cards);
+            $rslt.append($("<pre></pre>").text(cards));
             $tip.text(`calc ${totalCnt} card no ......`);
             cards = "";
             curCnt = 0;
