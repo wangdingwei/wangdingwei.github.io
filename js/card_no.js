@@ -73,12 +73,15 @@ $(function() {
             return c;
         }
 
-        forEach(cb) {
+        async forEach(cb) {
             let units = this.globUnits;
             //debugger;
             for (let i = 0, len = units.length; i < len;) {
                 let unit = units[i];
-                cb(this._getCur()); 
+                let cbRtn = cb(this._getCur()); 
+                if (cbRtn != null && cbRtn >= 0) {
+                    await sleep(cbRtn);
+                }
                 if (unit.isLast()) { // 进入下一个unit
                     for (let j = 0; j <= i; ++j) { // 当前的也要重置
                         units[j].idx = 0;
@@ -126,12 +129,23 @@ $(function() {
         console.log(card);
         let cn = new CardNo(card);
         console.log(cn);
+        let curCnt = 0;
+        let totalCnt = 0;
+        let cards = "";[]
         cn.forEach(c => {
             let isValidate = luhn_validate(c);
             //console.log(c, isValidate);
             if (isValidate) {
-                console.log(c, isValidate);
-                $rslt.append(c + "\n");
+                curCnt++;
+                totalCnt++;
+                //console.log(c, isValidate);
+                cards += c + "\n";
+                if (curCnt >= 100) {
+                    $rslt.append(cards);
+                    cards = "";
+                    curCnt = 0;
+                    return 0;
+                }
             }
         });
     });
