@@ -27,6 +27,7 @@ $(function() {
             this.card = card;
             this.cardUnits = [];
             this.globUnits = [];
+            this.stopped = false;
 
             this._parse();
         }
@@ -73,10 +74,14 @@ $(function() {
             return c;
         }
 
+        stop() {
+            this.stopped = true;
+        }
         async forEach(cb) {
+            this.stopped = false;
             let units = this.globUnits;
             //debugger;
-            for (let i = 0, len = units.length; i < len;) {
+            for (let i = 0, len = units.length; i < len && !this.stopped;) {
                 let unit = units[i];
                 let cbRtn = cb(this._getCur()); 
                 if (cbRtn != null && cbRtn >= 0) {
@@ -124,7 +129,9 @@ $(function() {
 
     let $rslt = $("#rslt");
     let $tip = $(".alert");
-    $(".submit").click(() => {
+    let cn = null;
+    $(".submit").click(async () => {
+        if (cn) cn.stop();
         $rslt.empty();
         let card = $("#card").val();
         console.log(card);
@@ -133,7 +140,7 @@ $(function() {
             return;
         }
         $tip.text(`begin calc: ${card}`);
-        let cn = new CardNo(card);
+        cn = new CardNo(card);
         console.log(cn);
         let curCnt = 0;
         let totalCnt = 0;
@@ -148,7 +155,7 @@ $(function() {
             curCnt = 0;
         }
 
-        cn.forEach(c => {
+        await cn.forEach(c => {
             let isValidate = luhn_validate(c);
             //console.log(c, isValidate);
             if (isValidate) {
