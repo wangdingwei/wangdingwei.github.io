@@ -123,15 +123,31 @@ $(function() {
     */
 
     let $rslt = $("#rslt");
+    let $tip = $(".alert");
     $(".submit").click(() => {
         $rslt.empty();
         let card = $("#card").val();
         console.log(card);
+        if (!card) {
+            $tip.text("please input card");
+            return;
+        }
+        $tip.text(`begin calc: ${card}`);
         let cn = new CardNo(card);
         console.log(cn);
         let curCnt = 0;
         let totalCnt = 0;
-        let cards = "";[]
+        let cards = "";
+        let displayCnt = random(90, 110);
+
+        function doRsltCards() {
+            displayCnt = random(90, 110);
+            $rslt.append(cards);
+            $tip.text(`calc ${totalCnt} card no ......`);
+            cards = "";
+            curCnt = 0;
+        }
+
         cn.forEach(c => {
             let isValidate = luhn_validate(c);
             //console.log(c, isValidate);
@@ -140,14 +156,16 @@ $(function() {
                 totalCnt++;
                 //console.log(c, isValidate);
                 cards += c + "\n";
-                if (curCnt >= 100) {
-                    $rslt.append(cards);
-                    cards = "";
-                    curCnt = 0;
+                if (curCnt >= displayCnt) {
+                    doRsltCards();
                     return 0;
                 }
             }
         });
+        if (curCnt > 0) {
+            doRsltCards();
+        }
+        $tip.text(`calc ${totalCnt} card no`);
     });
 
 
