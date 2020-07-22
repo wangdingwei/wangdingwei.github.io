@@ -172,7 +172,11 @@ $(function() {
         if (curCnt > 0) {
             doRsltCards();
         }
-        $tip.text(`calc ${totalCnt} card no`);
+        if (totalCnt == 0) {
+            $tip.text(`no card available: ${card}`);
+        } else {
+            $tip.text(`calc ${totalCnt} card no`);
+        }
     });
 
 
