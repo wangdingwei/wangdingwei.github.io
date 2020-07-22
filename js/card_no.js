@@ -45,7 +45,7 @@ $(function() {
                     let u = new Unit([c]);
                     this.cardUnits.push(u);
                 }
-                else if (c == "*") { // 
+                else if (c == "*" || c == "#" || c == "?" || c == ".") { // 
                     let u = new Unit(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
                     this.cardUnits.push(u);
                     this.globUnits.push(u);
