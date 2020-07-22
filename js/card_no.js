@@ -130,7 +130,8 @@ $(function() {
     let $rslt = $("#rslt");
     let $tip = $(".alert");
     let cn = null;
-    $(".submit").click(async () => {
+
+    async function calc() {
         if (cn) cn.stop();
         $rslt.empty();
         let card = $("#card").val();
@@ -177,6 +178,13 @@ $(function() {
             $tip.text(`no card available: ${card}`);
         } else {
             $tip.text(`calc ${totalCnt} card no`);
+        }
+    }
+
+    $(".submit").click(calc);
+    $("body").on("keydown", e => {
+        if (e.which == 13) {
+            calc();
         }
     });
 
