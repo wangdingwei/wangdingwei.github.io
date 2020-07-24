@@ -49,8 +49,14 @@ $(function() {
                 } else {
                     $row.find(".quote-name a").text(info.quoteName).attr("href", "quote_detail.html?id=" + id);
                 }
-                $row.find(".last-quote").text(info.lastQuote);
-                $row.find(".now-quote").text(info.nowQuote);
+                function fmt(quote) {
+                    if (quote >= 1000) {
+                        return parseInt(quote);
+                    }
+                    return quote;
+                }
+                $row.find(".last-quote").text(fmt(info.lastQuote));
+                $row.find(".now-quote").text(fmt(info.nowQuote));
                 $row.find(".percent").text(info.percentStr);
 
                 $quoteTbl.find("tbody").append($row);
