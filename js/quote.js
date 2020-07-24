@@ -1,5 +1,7 @@
 "use strict";
 
+var toptip = new TopTip();
+
 $(function() {
 
     var isPlugin = getUrlPara("from", "") == "plugin";
