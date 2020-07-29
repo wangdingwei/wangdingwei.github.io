@@ -22,7 +22,7 @@ $(function() {
         "hf_CHA50CFD"
     ];
     var $quoteTbl = $(".quote-tbl");
-    var $quoteRowTmpl = $(".quote-row-tmpl").detach().removeClass("hide");
+    var $quoteRowTmpl = $(".quote-row-tmpl").detach().removeClass("quote-row-tmpl hide");
 
 
 
