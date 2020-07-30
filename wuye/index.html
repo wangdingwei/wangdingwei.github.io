@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+    <title>物业</title>
+
+
+
+    <!-- css -->
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://file.9009.xyz/jscss/simple/simple.css" />
+    -->
+
+    <style type="text/css">
+        body {
+            margin: 8px;
+        }
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+        img {
+            max-width: 960px;
+            width: 100%;
+        }
+        li {
+            margin: 10px auto;
+        }
+
+        .warn {
+            color: red;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-top: 25px;
+        }
+
+        #sign {
+            border: none;
+            text-align: right;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="main">
+        <h1 style="text-align: center;">申请物业费抵扣</h1>
+        <div style="font-weight: bold; font-size: 20px; margin: 20px 0px;">
+            上海金地物业服务有限公司:
+        </div>
+        <div style="text-indent: 30px; line-height: 26px;">
+            本人松江区泗凤路508弄业主。 在和物业签订手册中，明确规定不允许安装室外晾衣架。但小区中已经存在部分住户安装晾衣架、且已存在半年之久。 物业存在明确的失职，违反签订的物业手册。 故本人要求，从2020年1月1日开始，每个月抵扣1块的物业费，作为物业失职、违约的处罚和对业主的赔偿。
+        </div>
+        <div style="text-align: right;">
+            <input placeholder="点这里属于名字或房号" id="sign"/>
+        </div>
+        <div style="text-align: right;" id="date"></div>
+    </div>
+    <script type="text/javascript">
+        var now = new Date();
+        document.getElementById("date").textContent = now.getFullYear() + "年" + (now.getMonth() + 1) + "月";
+    </script>
+</body>
+
+</html>
