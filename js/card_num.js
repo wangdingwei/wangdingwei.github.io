@@ -152,7 +152,7 @@ $(function() {
             displayCnt = random(90, 110);
             // $rslt.append(cards);
             $rslt.append($("<pre></pre>").text(cards));
-            $tip.text(`calc ${totalCnt} card no ......`);
+            $tip.text(`calc ${totalCnt} card num ......`);
             cards = "";
             curCnt = 0;
         }
@@ -177,7 +177,7 @@ $(function() {
         if (totalCnt == 0) {
             $tip.text(`no card available: ${card}`);
         } else {
-            $tip.text(`calc ${totalCnt} card no`);
+            $tip.text(`calc ${totalCnt} card num`);
         }
     }
 
