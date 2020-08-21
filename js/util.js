@@ -31,7 +31,7 @@ function parseSinaQuote(id, str) {
     else if(id.startsWith("hk") || id.startsWith("rt_hk")) {
         info.quoteName = arr[0];
         info.lastQuote = parseFloat(arr[3]); // 昨收
-        info.nowQuote = parseFloat(arr[6]);
+        info.nowQuote = parseFloat(arr[10]); // 6不包含竞价，
         info.date = arr[17];
         info.time = arr[18];
     }
