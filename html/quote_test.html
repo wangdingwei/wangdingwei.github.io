@@ -66,6 +66,34 @@
         });
         $("#qq").text(str);
 
+
+
+        var totalDeviation = 0;
+        var avgDeviation = 0;
+        var maxDeviation = 0;
+        var minDeviation = 123456789;
+        for (var i = 1; i < 10000; ++i) {
+            var start = Date.now();
+            var infos = await getQuoteInfos(["r_hk00700"], "qq");
+            var quote = infos[0];
+
+            $("#qq").text(`${quote.time} ${quote.nowQuote}`);
+            var arr = quote.time.split(":");
+            var now = new Date();
+            var deviation = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds() - arr[0]*60*60 - arr[1]*60 - arr[2];
+            totalDeviation += deviation;
+            avgDeviation = (parseFloat(totalDeviation/i)).toPrecision(3);
+            maxDeviation = Math.max(maxDeviation, deviation);
+            minDeviation = Math.min(minDeviation, deviation);
+            console.log(now, quote.time, deviation, minDeviation, maxDeviation, avgDeviation);
+
+            var diff = Date.now() - start;
+            if (diff < 1000) {
+                await sleep((1000 - diff)/1000)
+            }
+        }
+
+
     })();
     </script>
 </body>
