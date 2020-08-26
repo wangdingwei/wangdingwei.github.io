@@ -25,7 +25,7 @@
         #main {
             width: 100%;
             margin: 0 auto;
-            max-width: 960px;
+            max-width: 1024px;
         }
 
 
@@ -42,8 +42,9 @@
     </script>
     <div id="main">
 
+        <pre id="test"></pre>
         <pre id="qq"></pre>
-        <div id="sina"></div>
+        <pre id="sina"></pre>
 
 
     </div>
@@ -57,16 +58,7 @@
 
     <script type="text/javascript">
     //window.IsDebug = true;
-    (async () => {
-        var infos = await getQuoteInfos(["hk00700", "sz000001", "sh000001"], "qq");
-        console.log(infos);
-        var str = "";
-        infos.forEach(e => {
-            str += `id: ${e.id}; quote: ${e.nowQuote}; time: ${e.time};\n`;
-        });
-        $("#qq").text(str);
-
-
+    async function test(src) {
 
         var totalDeviation = 0;
         var avgDeviation = 0;
@@ -74,12 +66,9 @@
         var minDeviation = 123456789;
         for (var i = 1; i < 10000; ++i) {
             var start = Date.now();
-            var infos = await getQuoteInfosJSONP(["hk00700"], "sina");
-            //var infos = await getQuoteInfosJSONP(["hk00700"], "qq");
-            //var infos = await getQuoteInfos(["hk00700"], "qq");
+            var infos = await getQuoteInfosJSONP(["hk00700"], src);
             var quote = infos[0];
 
-            $("#qq").text(`${quote.time} ${quote.nowQuote}`);
             var arr = quote.time.split(":");
             var now = new Date();
             var deviation = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds() - arr[0]*60*60 - arr[1]*60 - arr[2];
@@ -89,11 +78,30 @@
             minDeviation = Math.min(minDeviation, deviation);
             console.log(now, quote.time, deviation, minDeviation, maxDeviation, avgDeviation);
 
+            $(`#${src}`).text(`times: ${i}  time: ${quote.time} now: ${quote.nowQuote}  min: ${minDeviation}    max: ${maxDeviation}    avg: ${avgDeviation}`);
+
             var diff = Date.now() - start;
             if (diff < 1000) {
                 await sleep((1000 - diff)/1000)
             }
         }
+
+    }
+    (async () => {
+        /*
+        var infos = await getQuoteInfos(["hk00700", "sz000001", "sh000001"], "qq");
+        console.log(infos);
+        var str = "";
+        infos.forEach(e => {
+            str += `id: ${e.id}; quote: ${e.nowQuote}; time: ${e.time};\n`;
+        });
+        $("#qq").text(str);
+        */
+
+        test("qq");
+        test("sina");
+
+
 
 
     })();
