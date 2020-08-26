@@ -6,6 +6,7 @@
  * 
  * 跨域(Access-Control-Allow-Origin): 新浪不支持, QQ支持
  * 竞价阶段报价更新: 新浪不支持, QQ支持
+ * 港股实时报价: 新浪rt_, QQ r_
  * chrome extension不能用jsonp, 不允许执行远程脚本
  */
 
@@ -18,7 +19,7 @@
  * time
  */
 function parseSinaQuote(id, str) {
-    var info = {id: id};
+    var info = {id: id.replace(/^rt_/, "")};
     if (str == "") {
         return info;
     }
@@ -66,7 +67,7 @@ function parseSinaQuote(id, str) {
 
 
 function parseQQQuote(id, str) {
-    var info = {id: id};
+    var info = {id: id.replace(/^r_/, "")};
     if (str == "") {
         return info;
     }
@@ -102,8 +103,22 @@ function parseQQQuote(id, str) {
     return info;
 }
 
+function stdQuoteIds(ids, src) {
+    var isQQ = src != "sina";
+    var arr = [];
+    ids.forEach(v => {
+        if (v.startsWith("hk")) {
+            v = isQQ ? "r_" + v : "rt_" + v;
+        } 
+        else {
+        }
+        arr.push(v);
+    });
+    return arr;
+}
 
 function getQuoteInfos(ids, src) {
+    ids = stdQuoteIds(ids, src);
     var isQQ = src != "sina";
     var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
     
@@ -112,6 +127,10 @@ function getQuoteInfos(ids, src) {
             url: urlPrefix + ids.join(","),
             success: function(data) {
                 let infos = [];
+                if (data.startsWith("v_pv_none_match=")) {
+                    resolve(infos);
+                    return;
+                }
                 //console.log(data);
                 data.split(/[\r\n;]+/).forEach((v) => {
                     v = v.trim();
@@ -133,6 +152,7 @@ function getQuoteInfos(ids, src) {
 
 
 function getQuoteInfosJSONP(ids, src) {
+    ids = stdQuoteIds(ids, src);
     var isQQ = src != "sina";
     var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
 

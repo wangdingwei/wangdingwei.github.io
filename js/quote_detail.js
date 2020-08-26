@@ -1,11 +1,9 @@
 "use strict";
 
-$(function() {
+$(async function() {
 
     var toptip = new TopTip();
 
-    var quoteIDs = [
-    ];
     var $quoteTbl = $(".quote-tbl");
     var pricePercent = [10, 8, 7, 6, 5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 
                         -1, -1.5, -2, -2.5, -3, -3.5, -4, -5, -6, -7, -8, -10];
@@ -36,11 +34,10 @@ $(function() {
 
     if(id == "") {
         $quoteTbl.hide();
-        mask.hide();
         return;
     } else {
-        quoteIDs = [id];
     }
+    mask.hide();
 
 
     pricePercent.forEach(percent => {
@@ -58,58 +55,44 @@ $(function() {
 
 
 
+    var infos = await getQuoteInfos([id], "qq");
+    if (infos.length == 0) {
+        toptip.show("not found: " + id);
+        $quoteTbl.hide();
+        return;
+    }
+    var info = infos[0];
+    document.title = info.quoteName;
 
-    $.ajax({
-        url: "https://hq.sinajs.cn/list=" + quoteIDs.join(","),
-        dataType: "script",
-        cache: "true",
-        success: function() {
-            quoteIDs.forEach(id => {
-                var rslt = window["hq_str_" + id]; 
-                if (!rslt || rslt == "") {
-                    notFoundQuotes.push(id);
-                    return;
-                }
-                var info = parseSinaQuote(id, rslt);
+    $quoteTbl.find("tr th:first-child").text(info.lastQuote);
 
-
-                document.title = info.quoteName;
-
-                $quoteTbl.find("tr th:first-child").text(info.lastQuote);
-
-                $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
-                $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
+    $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
+    $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
 
 
-                $quoteTbl.find("thead tr").append($("<th>").text(info.quoteName + "(" + info.time + ")"));
+    $quoteTbl.find("thead tr").append($("<th>").text(info.quoteName + "(" + info.time + ")"));
 
-                pricePercent.forEach(percent => {
-                    var $row = $quoteTbl.find(".percent_" + percent*100);
-                    var $td = $("<td>");
-                    var price = info.lastQuote + info.lastQuote*percent/100;
-                    price = Number(price).toFixed(3);
+    pricePercent.forEach(percent => {
+        var $row = $quoteTbl.find(".percent_" + percent*100);
+        var $td = $("<td>");
+        var price = info.lastQuote + info.lastQuote*percent/100;
+        price = Number(price).toFixed(3);
 
-                    $td.text(price);
-                    /*
-                    var qty = parseInt(10000/price);
-                    $td.text(price + "(" + qty + ")");
-                    */
+        $td.text(price);
+        /*
+        var qty = parseInt(10000/price);
+        $td.text(price + "(" + qty + ")");
+        */
 
 
 
-                    $row.append($td);
-                });
+        $row.append($td);
+    });
 
-            });
+    mask.hide();
 
-            if (notFoundQuotes.length > 0) {
-                $quoteTbl.hide();
-                toptip.show("not found: " + notFoundQuotes);
-            }
-        }
-      }).always(() => {
-          mask.hide();
-      });
+
+    return;
 
 
 });

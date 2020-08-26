@@ -58,7 +58,7 @@
     <script type="text/javascript">
     //window.IsDebug = true;
     (async () => {
-        var infos = await getQuoteInfos(["r_hk00700", "sz000001", "sh000001"], "qq");
+        var infos = await getQuoteInfos(["hk00700", "sz000001", "sh000001"], "qq");
         console.log(infos);
         var str = "";
         infos.forEach(e => {
@@ -74,9 +74,9 @@
         var minDeviation = 123456789;
         for (var i = 1; i < 10000; ++i) {
             var start = Date.now();
-            var infos = await getQuoteInfosJSONP(["rt_hk00700"], "sina");
-            //var infos = await getQuoteInfosJSONP(["r_hk00700"], "qq");
-            //var infos = await getQuoteInfos(["r_hk00700"], "qq");
+            var infos = await getQuoteInfosJSONP(["hk00700"], "sina");
+            //var infos = await getQuoteInfosJSONP(["hk00700"], "qq");
+            //var infos = await getQuoteInfos(["hk00700"], "qq");
             var quote = infos[0];
 
             $("#qq").text(`${quote.time} ${quote.nowQuote}`);
