@@ -1,4 +1,9 @@
 
+/*
+ * https://qt.gtimg.cn/q=r_hk00700,sh000001
+ * https://hq.sinajs.cn/list=rt_hk00700,sh000001
+ */
+
 /**
  * id
  * quoteName
@@ -17,7 +22,6 @@ function parseSinaQuote(id, str) {
     var debugStr = [];
     arr.forEach((val, idx) => {
         debugStr.push(idx + " " + val);
-        //console.log(idx, val);
     });
     window.IsDebug && console.log("------ " + id + " ------\n" + debugStr.join("; "));
     if (id.startsWith("hf_")) { // 期货
@@ -54,4 +58,120 @@ function parseSinaQuote(id, str) {
     window.IsDebug && console.log(info);
     return info;
 }
+
+
+function parseQQQuote(id, str) {
+    var info = {id: id};
+    if (str == "") {
+        return info;
+    }
+    var arr = str.split("~");
+
+    var debugStr = [];
+    arr.forEach((val, idx) => {
+        debugStr.push(idx + " " + val);
+    });
+    window.IsDebug && console.log("------ " + id + " ------\n" + debugStr.join("; "));
+    if(id.startsWith("hk") || id.startsWith("r_hk")) {
+        info.quoteName = arr[1];
+        info.lastQuote = parseFloat(arr[4]); // 昨收
+        info.nowQuote = parseFloat(arr[3]);
+        info.date = arr[30].split(" ")[0];
+        info.time = arr[30].split(" ")[1];
+    }
+    else {
+        info.quoteName = arr[1];
+        info.lastQuote = parseFloat(arr[4]); // 昨收
+        info.nowQuote = parseFloat(arr[3]);
+        info.date = arr[30].substring(0, 8);
+        info.time = arr[30].substring(8).match(/\d{2}/g).join(":");
+    }
+
+    var nowPercent = (info.nowQuote - info.lastQuote)*100.0/info.lastQuote;
+    nowPercent = Number(nowPercent).toFixed(2);
+
+    info.percent = nowPercent;
+    info.percentStr = nowPercent >= 0 ? "+" + nowPercent + "%" : nowPercent + "%"; 
+
+    window.IsDebug && console.log(info);
+    return info;
+}
+
+
+function getQuoteInfos(ids, src) {
+    var isQQ = src && src.toLowerCase() == "qq";
+    var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: urlPrefix + ids.join(","),
+            success: function(data) {
+                let infos = [];
+                //console.log(data);
+                data.split(/[\r\n;]+/).forEach((v) => {
+                    v = v.trim();
+                    if (v.length == 0) return;
+                    var quoteId = v.replace(/(var hq_str_|v_)/g, "").replace(/=[^=]*/,'').replace(/["\r\n]/g, "");
+                    var quoteStr = v.replace(/[^=]*=/,'').replace(/["\r\n]/g, "");
+                    var info = isQQ ? parseQQQuote(quoteId, quoteStr) : parseSinaQuote(quoteId, quoteStr);
+                    infos.push(info);
+                });
+                resolve(infos);
+            }
+        }).fail(function() {
+            console.warn("get quote info failed", arguments);
+            reject();
+        });
+    });
+}
+
+
+/*
+$.ajax({
+    url: "https://hq.sinajs.cn/list=" + quoteIDs.join(","),
+    dataType: "script",
+    cache: "true",
+    success: function() {
+        quoteIDs.forEach(id => {
+            var rslt = window["hq_str_" + id]; 
+            if (!rslt || rslt == "") {
+                notFoundQuotes.push(id);
+                return;
+            }
+            var info = parseSinaQuote(id, rslt);
+
+
+            document.title = info.quoteName;
+
+            $quoteTbl.find("tr th:first-child").text(info.lastQuote);
+
+            $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
+            $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
+
+
+            $quoteTbl.find("thead tr").append($("<th>").text(info.quoteName + "(" + info.time + ")"));
+
+            pricePercent.forEach(percent => {
+                var $row = $quoteTbl.find(".percent_" + percent*100);
+                var $td = $("<td>");
+                var price = info.lastQuote + info.lastQuote*percent/100;
+                price = Number(price).toFixed(3);
+
+                $td.text(price);
+
+
+
+                $row.append($td);
+            });
+
+        });
+
+        if (notFoundQuotes.length > 0) {
+            $quoteTbl.hide();
+            toptip.show("not found: " + notFoundQuotes);
+        }
+    }
+  }).always(() => {
+      mask.hide();
+  });
+  */
 
