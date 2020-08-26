@@ -2,6 +2,11 @@
 /*
  * https://qt.gtimg.cn/q=r_hk00700,sh000001
  * https://hq.sinajs.cn/list=rt_hk00700,sh000001
+ * 
+ * 
+ * 跨域(Access-Control-Allow-Origin): 新浪不支持, QQ支持
+ * 竞价阶段报价更新: 新浪不支持, QQ支持
+ * chrome extension不能用jsonp, 不允许执行远程脚本
  */
 
 /**
@@ -99,8 +104,9 @@ function parseQQQuote(id, str) {
 
 
 function getQuoteInfos(ids, src) {
-    var isQQ = src && src.toLowerCase() == "qq";
+    var isQQ = src != "sina";
     var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
+    
     return new Promise((resolve, reject) => {
         $.ajax({
             url: urlPrefix + ids.join(","),
@@ -125,53 +131,32 @@ function getQuoteInfos(ids, src) {
 }
 
 
-/*
-$.ajax({
-    url: "https://hq.sinajs.cn/list=" + quoteIDs.join(","),
-    dataType: "script",
-    cache: "true",
-    success: function() {
-        quoteIDs.forEach(id => {
-            var rslt = window["hq_str_" + id]; 
-            if (!rslt || rslt == "") {
-                notFoundQuotes.push(id);
-                return;
+
+function getQuoteInfosJSONP(ids, src) {
+    var isQQ = src != "sina";
+    var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: urlPrefix + ids.join(","),
+            dataType: "script",
+            cache: "true",
+            success: function(data) {
+                let infos = [];
+
+                ids.forEach(quoteId => {
+                    var key = isQQ ? "v_" : "hq_str_";
+                    key += quoteId;
+                    var quoteStr = window[key];
+                    var info = isQQ ? parseQQQuote(quoteId, quoteStr) : parseSinaQuote(quoteId, quoteStr);
+                    infos.push(info);
+                });
+                resolve(infos);
             }
-            var info = parseSinaQuote(id, rslt);
-
-
-            document.title = info.quoteName;
-
-            $quoteTbl.find("tr th:first-child").text(info.lastQuote);
-
-            $quoteTbl.find(".last-quote").append($("<td>").text(info.lastQuote));
-            $quoteTbl.find(".now-quote").append($("<td>").text(info.nowQuote + "(" + info.percent + "%)"));
-
-
-            $quoteTbl.find("thead tr").append($("<th>").text(info.quoteName + "(" + info.time + ")"));
-
-            pricePercent.forEach(percent => {
-                var $row = $quoteTbl.find(".percent_" + percent*100);
-                var $td = $("<td>");
-                var price = info.lastQuote + info.lastQuote*percent/100;
-                price = Number(price).toFixed(3);
-
-                $td.text(price);
-
-
-
-                $row.append($td);
-            });
-
+        }).fail(function() {
+            console.warn("get quote info failed", arguments);
+            reject();
         });
-
-        if (notFoundQuotes.length > 0) {
-            $quoteTbl.hide();
-            toptip.show("not found: " + notFoundQuotes);
-        }
-    }
-  }).always(() => {
-      mask.hide();
-  });
-  */
+    });
+}
 

@@ -74,7 +74,9 @@
         var minDeviation = 123456789;
         for (var i = 1; i < 10000; ++i) {
             var start = Date.now();
-            var infos = await getQuoteInfos(["r_hk00700"], "qq");
+            var infos = await getQuoteInfosJSONP(["rt_hk00700"], "sina");
+            //var infos = await getQuoteInfosJSONP(["r_hk00700"], "qq");
+            //var infos = await getQuoteInfos(["r_hk00700"], "qq");
             var quote = infos[0];
 
             $("#qq").text(`${quote.time} ${quote.nowQuote}`);
