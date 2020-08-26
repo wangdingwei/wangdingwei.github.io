@@ -78,7 +78,7 @@
             minDeviation = Math.min(minDeviation, deviation);
             console.log(now, quote.time, deviation, minDeviation, maxDeviation, avgDeviation);
 
-            $(`#${src}`).text(`times: ${i}  time: ${quote.time} now: ${quote.nowQuote}  min: ${minDeviation}    max: ${maxDeviation}    avg: ${avgDeviation}`);
+            $(`#${src}`).text(`${src.padEnd(4)} times: ${i}  time: ${quote.time} now: ${quote.nowQuote}  min: ${minDeviation}    max: ${maxDeviation}    avg: ${avgDeviation}`);
 
             var diff = Date.now() - start;
             if (diff < 1000) {
