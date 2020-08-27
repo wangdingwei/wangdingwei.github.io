@@ -57,6 +57,7 @@
 
 
     <script type="text/javascript">
+    "use strict";
     //window.IsDebug = true;
     async function test(src) {
 
@@ -78,7 +79,7 @@
             minDeviation = Math.min(minDeviation, deviation);
             console.log(now, quote.time, deviation, minDeviation, maxDeviation, avgDeviation);
 
-            $(`#${src}`).text(`${src.padEnd(4)} times: ${i}  time: ${quote.time}  now: ${(quote.nowQuote + "").padEnd(6)}  min: ${minDeviation}  max: ${maxDeviation}  avg: ${avgDeviation}`);
+            $(`#${src}`).text(`${src.padEnd(4)} times: ${i}  time: ${quote.time}  now: ${String(quote.nowQuote).padEnd(6)}  min: ${minDeviation}  max: ${String(maxDeviation).padEnd(3)}  avg: ${avgDeviation}`);
 
             var diff = Date.now() - start;
             if (diff < 1000) {
