@@ -1,3 +1,4 @@
+"use strict"
 
 /*
  * https://qt.gtimg.cn/q=r_hk00700,sh000001
@@ -151,6 +152,9 @@ function getQuoteInfos(ids, src) {
 
 
 
+/*
+ * jsonp 
+ */
 function getQuoteInfosJSONP(ids, src) {
     ids = stdQuoteIds(ids, src);
     var isQQ = src != "sina";
