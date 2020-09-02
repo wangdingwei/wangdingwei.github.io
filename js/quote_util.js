@@ -1,6 +1,7 @@
 "use strict"
 
-/*
+/**
+ * 
  * https://qt.gtimg.cn/q=r_hk00700,sh000001
  * https://hq.sinajs.cn/list=rt_hk00700,sh000001
  * 
@@ -9,15 +10,25 @@
  * 竞价阶段报价更新: 新浪不支持, QQ支持
  * 港股实时报价: 新浪rt_, QQ r_
  * chrome extension不能用jsonp, 不允许执行远程脚本
+ * 
+ * 
+ * quote info:
+ *   id
+ *   quoteName
+ *   lastQuote
+ *   nowQuote
+ *   minQuote
+ *   maxQuote
+ *   date
+ *   time
+ * 
  */
 
+
+
+
 /**
- * id
- * quoteName
- * lastQuote
- * nowQuote
- * date
- * time
+ * 
  */
 function parseSinaQuote(id, str) {
     var info = {id: id.replace(/^rt_/, "")};
@@ -83,6 +94,8 @@ function parseQQQuote(id, str) {
         info.quoteName = arr[1];
         info.lastQuote = parseFloat(arr[4]); // 昨收
         info.nowQuote = parseFloat(arr[3]);
+        info.minQuote = parseFloat(arr[34]);
+        info.maxQuote = parseFloat(arr[33]);
         info.date = arr[30].split(" ")[0];
         info.time = arr[30].split(" ")[1];
     }
@@ -90,6 +103,8 @@ function parseQQQuote(id, str) {
         info.quoteName = arr[1];
         info.lastQuote = parseFloat(arr[4]); // 昨收
         info.nowQuote = parseFloat(arr[3]);
+        info.minQuote = parseFloat(arr[34]);
+        info.maxQuote = parseFloat(arr[33]);
         info.date = arr[30].substring(0, 8);
         info.time = arr[30].substring(8).match(/\d{2}/g).join(":");
     }
