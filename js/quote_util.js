@@ -123,7 +123,10 @@ function stdQuoteIds(ids, src) {
     var isQQ = src != "sina";
     var arr = [];
     ids.forEach(v => {
-        if (v.startsWith("hk")) {
+        if (v.startsWith("#")) {
+            return;
+        }
+        else if (v.startsWith("hk")) {
             v = isQQ ? "r_" + v : "rt_" + v;
         } 
         else {
