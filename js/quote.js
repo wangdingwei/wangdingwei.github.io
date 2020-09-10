@@ -40,6 +40,8 @@ $(async function() {
         }
         $row.find(".last-quote").text(fmt(info.lastQuote));
         $row.find(".now-quote").text(fmt(info.nowQuote));
+        $row.find(".min-quote").text(fmt(info.minQuote));
+        $row.find(".max-quote").text(fmt(info.maxQuote));
         $row.find(".percent").text(info.percentStr);
 
         $quoteTbl.find("tbody").append($row);
