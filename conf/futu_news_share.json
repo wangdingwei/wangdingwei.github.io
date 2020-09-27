@@ -1,6 +1,6 @@
 {
-    "newscnt": 10,
-    "sleep_sec": 0.1,
+    "newscnt": 10, // share news count
+    "sleep_sec": 0.1, // sleep second every news
     "uids": [
         10901705,
         7968588,
