@@ -1,11 +1,11 @@
 {
     "newscnt": 10, // share news count
     "sleep_sec": 0.1, // sleep second every news
-    "keep_devid": false, // is keep devid in current share
+    "keep_devid": true, // is keep devid in current share
     "uids": [
         10901705,
         7968588,
-        16674781,
+        16674781, // abc
         7854756, // minjin
         16492075 // hou
     ]
