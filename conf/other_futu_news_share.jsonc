@@ -3,9 +3,10 @@
     "sleep_sec": 0.1, // sleep second every news
     "keep_devid": true, // is keep devid in current share
     "uids": [
-        10901705,
-        7968588,
-        16674781, // abc
+        10901705, // oyjg1
+        7968588, // 股海拆彈王牌
+        372578, // 拒绝蟹货
+        //16674781, // abc
         7854756, // minjin
         16492075 // hou
     ]
