@@ -2,7 +2,7 @@
     "newscnt": 8, // share news count
     "sleep_sec": 0.5, // sleep second every news
     "keep_devid": true, // is keep devid in current share
-    "gen_devid_pr": 0, // 生成新的devid的概率, 百分比
+    "gen_devid_pr": 50, // 生成新的devid的概率, 百分比
     "uids": [
         11996819
     ]
