@@ -2,7 +2,7 @@
     "newscnt": 10, // share news count
     "sleep_sec": 0.1, // sleep second every news
     "keep_devid": true, // is keep devid in current share
-    "gen_devid_pr": 0, // 生成新的devid的概率, 百分比
+    "gen_devid_pr": 10, // 生成新的devid的概率, 百分比
     "uids": [
         10901705, // oyjg1
         7968588, // 股海拆彈王牌
