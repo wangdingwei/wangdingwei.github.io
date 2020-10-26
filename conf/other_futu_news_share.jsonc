@@ -1,5 +1,5 @@
 {
-    "newscnt": 10, // share news count
+    "newscnt": 15, // share news count
     "sleep_sec": 0.1, // sleep second every news
     "keep_devid": true, // is keep devid in current share
     "gen_devid_pr": 5, // 生成新的devid的概率, 百分比
@@ -7,9 +7,9 @@
         10901705, // oyjg1
         //7968588, // 股海拆彈王牌
         372578, // 拒绝蟹货
-        1788258, // 牧牛童子
+        //1788258, // 牧牛童子
         //16674781, // abc
-        5956132, //cici
+        //5956132, //cici
         365871, // lion
         7854756, // minjin
         16492075 // hou
