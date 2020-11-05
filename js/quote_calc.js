@@ -13,7 +13,12 @@ $(async function() {
 
     function submit() {
         $items.empty();
+        toptip.hide();
         var quotePrice = $("#quote").val();
+        if (quotePrice == "") {
+            toptip.show("quote is empty", 5);
+            return;
+        }
         quotePrice = parseInt(quotePrice);
         pricePercent.forEach(percent => {
             var $item = $itemTmpl.clone();
