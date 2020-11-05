@@ -30,22 +30,24 @@
             max-width: 960px;
         }
 
+        .w-item {
+            float: left;
+            /* width: 120px; */
+            margin-right: 20px;
+            border-bottom: 0.5px solid;
+        }
 
-        table {
-            width: 100%;
+        .percent {
+            display: inline-block;
+            width: 60px;
+        }
+        .val {
+            display: inline-block;
+            width: 90px;
+            text-align: right;
         }
 
 
-        table {
-            text-align: left;
-            position: relative;
-        }
-
-        th {
-            /* background: #e0e0e0; */
-            position: sticky;
-            top: 0;
-        }
     </style>
 </head>
 
@@ -63,6 +65,13 @@
             <input class="form-control" type="number" id="quote" name="quote" placeholder="quote">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary submit" type="button">&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+        </div>
+
+        <div id="items" class="w-items">
+            <div class="w-item-tmpl w-item">
+                <div class="percent"></div>
+                <div class="val"></div>
             </div>
         </div>
 

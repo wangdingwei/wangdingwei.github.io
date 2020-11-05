@@ -8,6 +8,33 @@ $(async function() {
                         -1, -1.5, -2, -2.5, -3, -3.5, -4, -5, -6, -7, -8, -10];
 
 
+    var $items = $("#items");
+    var $itemTmpl = $(".w-item-tmpl").detach().removeClass("w-item-tmpl");
+
+    function submit() {
+        $items.empty();
+        var quotePrice = $("#quote").val();
+        quotePrice = parseInt(quotePrice);
+        pricePercent.forEach(percent => {
+            var $item = $itemTmpl.clone();
+            $item.find(".percent").text(Number(percent).toFixed(1) + "%");
+
+            var price = quotePrice + quotePrice*percent/100;
+            price = Number(price).toFixed(3);
+            $item.find(".val").text(price);
+
+            $items.append($item);
+        });
+    }
+    $(".submit").click(evt => {
+        submit();
+    });
+    $("#quote").keypress(evt => {
+        var keycode = (evt.keyCode ? evt.keyCode : evt.which);
+        if(keycode == '13'){
+            submit();
+        }
+    });
 
     mask.hide();
 
