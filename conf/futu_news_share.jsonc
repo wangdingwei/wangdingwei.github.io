@@ -1,5 +1,5 @@
 {
-    "newscnt": 20, // share news count
+    "newscnt": 15, // share news count
     "sleep_sec": 0.5, // sleep second every news
     "gen_devid_pr": 15, // 生成新的devid的概率, 百分比
     "uids": [
