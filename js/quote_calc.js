@@ -19,7 +19,7 @@ $(async function() {
             toptip.show("quote is empty", 5);
             return;
         }
-        quotePrice = parseInt(quotePrice);
+        quotePrice = parseFloat(quotePrice);
         pricePercent.forEach(percent => {
             var $item = $itemTmpl.clone();
             $item.find(".percent").text(Number(percent).toFixed(1) + "%");
