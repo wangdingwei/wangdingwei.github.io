@@ -20,12 +20,18 @@ $(async function() {
             return;
         }
         quotePrice = parseFloat(quotePrice);
+        var fractionCnt = 1;
+        if (quotePrice >= 1000) fractionCnt = 0;
+        else if (quotePrice >= 100) fractionCnt = 1;
+        else if (quotePrice >= 10) fractionCnt = 2;
+        else fractionCnt = 3;
+
         pricePercent.forEach(percent => {
             var $item = $itemTmpl.clone();
             $item.find(".percent").text(Number(percent).toFixed(1) + "%");
 
             var price = quotePrice + quotePrice*percent/100;
-            price = Number(price).toFixed(3);
+            price = Number(price).toFixed(fractionCnt);
             $item.find(".val").text(price);
 
             $items.append($item);
