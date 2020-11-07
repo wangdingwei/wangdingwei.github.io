@@ -2,6 +2,8 @@
 
 $(async function() {
 
+    const QuoteCalPriceKey = "quote_calc_price";
+
     var toptip = new TopTip();
 
     var pricePercent = [10, 8, 7, 6, 5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 
@@ -19,6 +21,7 @@ $(async function() {
             toptip.show("quote is empty", 5);
             return;
         }
+        cookie.set(QuoteCalPriceKey, quotePrice, 24*30);
         quotePrice = parseFloat(quotePrice);
         var fractionCnt = 1;
         if (quotePrice >= 1000) fractionCnt = 0;
@@ -46,6 +49,12 @@ $(async function() {
             submit();
         }
     });
+
+    var quotePrice = cookie.get(QuoteCalPriceKey);
+    if (quotePrice != "") {
+        $("#quote").val(quotePrice);
+        submit();
+    }
 
     mask.hide();
 
