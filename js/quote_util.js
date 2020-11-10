@@ -25,6 +25,40 @@
  */
 
 
+function stdQuoteIds(ids, src) {
+    var isQQ = src != "sina";
+    var arr = [];
+    ids.forEach(v => {
+        if (v.startsWith("#")) {
+            return;
+        }
+        else if (v.startsWith("hk")) {
+            v = isQQ ? "r_" + v : "rt_" + v;
+        } 
+        else {
+        }
+        arr.push(v);
+    });
+    return arr;
+}
+
+/**
+ * 
+ * @param {int or string} price 
+ * @returns string
+ */
+function beautyQuotePrice(price) {
+    price = parseFloat(price);
+    var fractionCnt = 1;
+    if (price >= 1000) fractionCnt = 0;
+    else if (price >= 100) fractionCnt = 1;
+    else if (price >= 10) fractionCnt = 2;
+    else fractionCnt = 3;
+
+    price = Number(price).toFixed(fractionCnt);
+    return price;
+}
+
 
 
 /**
@@ -117,23 +151,6 @@ function parseQQQuote(id, str) {
 
     window.IsDebug && console.log(info);
     return info;
-}
-
-function stdQuoteIds(ids, src) {
-    var isQQ = src != "sina";
-    var arr = [];
-    ids.forEach(v => {
-        if (v.startsWith("#")) {
-            return;
-        }
-        else if (v.startsWith("hk")) {
-            v = isQQ ? "r_" + v : "rt_" + v;
-        } 
-        else {
-        }
-        arr.push(v);
-    });
-    return arr;
 }
 
 function getQuoteInfos(ids, src) {
