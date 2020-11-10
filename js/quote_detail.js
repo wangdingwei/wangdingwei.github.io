@@ -76,7 +76,7 @@ $(async function() {
         var $row = $quoteTbl.find(".percent_" + percent*100);
         var $td = $("<td>");
         var price = info.lastQuote + info.lastQuote*percent/100;
-        price = Number(price).toFixed(3);
+        price = beautyQuotePrice(price);
 
         $td.text(price);
         /*
