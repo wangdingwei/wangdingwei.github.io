@@ -7,7 +7,8 @@ $(async function() {
     var isPlugin = getUrlPara("from", "") == "plugin";
 
     var quoteIDs = [
-        "hk00700",
+        "hk00700", // tencent
+        "hk09988", // ali
         "sh000001", // 上证指数
         "sh000016", // 上证50
         "sh510050", // 50ETF
@@ -16,10 +17,10 @@ $(async function() {
         "sz159920", // 恒生ETF
         "hkHSCEI", // 国企指数
         "sh510900", // H股ETF
-        "sh601111", // 国航
-        "sh600050", // 联通
-        "sh601288", // 农行
-        "sh601398", // 工行
+        //"sh601111", // 国航
+        //"sh600050", // 联通
+        //"sh601288", // 农行
+        //"sh601398", // 工行
         //"sh601186", // 中国铁建
         "#cmt"
     ];
