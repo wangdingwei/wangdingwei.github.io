@@ -35,16 +35,10 @@ $(async function() {
         } else {
             $row.find(".quote-name a").text(info.quoteName).attr("href", "quote_detail.html?id=" + info.id);
         }
-        function fmt(quote) {
-            if (quote >= 1000) {
-                return parseInt(quote);
-            }
-            return quote;
-        }
-        $row.find(".last-quote").text(fmt(info.lastQuote));
-        $row.find(".now-quote").text(fmt(info.nowQuote));
-        $row.find(".min-quote").text(fmt(info.minQuote));
-        $row.find(".max-quote").text(fmt(info.maxQuote));
+        $row.find(".last-quote").text(beautyQuotePrice(info.lastQuote));
+        $row.find(".now-quote").text(beautyQuotePrice(info.nowQuote));
+        $row.find(".min-quote").text(beautyQuotePrice(info.minQuote));
+        $row.find(".max-quote").text(beautyQuotePrice(info.maxQuote));
         $row.find(".percent").text(info.percentStr);
 
         $quoteTbl.find("tbody").append($row);
