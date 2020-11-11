@@ -2,7 +2,7 @@
 
 $(async function() {
 
-    const QuoteCalPriceKey = "quote_calc_price";
+    const last_calc_security_price = "last_calc_security_price";
 
     var toptip = new TopTip();
 
@@ -16,20 +16,20 @@ $(async function() {
     function submit() {
         $items.empty();
         toptip.hide();
-        var quotePrice = $("#quote").val();
-        if (quotePrice == "") {
-            toptip.show("quote is empty", 5);
+        var price = $("#price").val();
+        if (price == "") {
+            toptip.show("price is empty", 5);
             return;
         }
-        cookie.set(QuoteCalPriceKey, quotePrice, 24*30);
+        cookie.set(last_calc_security_price, price, 24*30);
 
         pricePercent.forEach(percent => {
             var $item = $itemTmpl.clone();
             $item.find(".percent").text(Number(percent).toFixed(1) + "%");
 
-            var price = quotePrice + quotePrice*percent/100
-            price = beautyPrice(price);
-            $item.find(".val").text(price);
+            var p = price + price*percent/100
+            p = beautyPrice(p);
+            $item.find(".val").text(p);
 
             $items.append($item);
         });
@@ -37,16 +37,16 @@ $(async function() {
     $(".submit").click(evt => {
         submit();
     });
-    $("#quote").keypress(evt => {
+    $("#price").keypress(evt => {
         var keycode = (evt.keyCode ? evt.keyCode : evt.which);
         if(keycode == '13'){
             submit();
         }
     });
 
-    var quotePrice = cookie.get(QuoteCalPriceKey);
-    if (quotePrice != "") {
-        $("#quote").val(quotePrice);
+    var price = cookie.get(last_calc_security_price);
+    if (price != "") {
+        $("#price").val(price);
         submit();
     }
 
