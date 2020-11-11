@@ -27,7 +27,8 @@ $(async function() {
             var $item = $itemTmpl.clone();
             $item.find(".percent").text(Number(percent).toFixed(1) + "%");
 
-            var price = beautyQuotePrice(quotePrice);
+            var price = quotePrice + quotePrice*percent/100
+            price = beautyQuotePrice(price);
             $item.find(".val").text(price);
 
             $items.append($item);
