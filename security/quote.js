@@ -6,7 +6,7 @@ $(async function() {
 
     var isPlugin = getUrlPara("from", "") == "plugin";
 
-    var quoteIDs = [
+    var syms = [
         "hk00700", // tencent
         "hk09988", // ali
         "sh000001", // 上证指数
@@ -28,18 +28,18 @@ $(async function() {
     var $quoteRowTmpl = $(".quote-row-tmpl").detach().removeClass("quote-row-tmpl hide");
 
 
-    var infos = await getQuoteInfos(quoteIDs, "qq");
+    var infos = await getQuoteInfos(syms, "qq");
     infos.forEach(info => {
         var $row = $quoteRowTmpl.clone();
         if (isPlugin) {
-            $row.find(".quote-name").text(info.quoteName);
+            $row.find(".name").text(info.name);
         } else {
-            $row.find(".quote-name a").text(info.quoteName).attr("href", "quote_detail.html?id=" + info.id);
+            $row.find(".name a").text(info.name).attr("href", "quote_detail.html?sym=" + info.sym);
         }
-        $row.find(".last-quote").text(beautyQuotePrice(info.lastQuote));
-        $row.find(".now-quote").text(beautyQuotePrice(info.nowQuote));
-        $row.find(".min-quote").text(beautyQuotePrice(info.minQuote));
-        $row.find(".max-quote").text(beautyQuotePrice(info.maxQuote));
+        $row.find(".prev-close").text(beautyPrice(info.prevClose));
+        $row.find(".now").text(beautyPrice(info.now));
+        $row.find(".min").text(beautyPrice(info.min));
+        $row.find(".max").text(beautyPrice(info.max));
         $row.find(".percent").text(info.percentStr);
 
         $quoteTbl.find("tbody").append($row);

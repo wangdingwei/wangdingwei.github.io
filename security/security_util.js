@@ -13,22 +13,22 @@
  * 
  * 
  * quote info:
- *   id
- *   quoteName
- *   lastQuote
- *   nowQuote
- *   minQuote
- *   maxQuote
+ *   sym
+ *   name
+ *   prevClose
+ *   now
+ *   min
+ *   max
  *   date
  *   time
  * 
  */
 
 
-function stdQuoteIds(ids, src) {
+function stdSecuritySymbols(syms, src) {
     var isQQ = src != "sina";
     var arr = [];
-    ids.forEach(v => {
+    syms.forEach(v => {
         if (v.startsWith("#")) {
             return;
         }
@@ -47,7 +47,7 @@ function stdQuoteIds(ids, src) {
  * @param {int or string} price 
  * @returns string
  */
-function beautyQuotePrice(price) {
+function beautyPrice(price) {
     price = parseFloat(price);
     var fractionCnt = 1;
     if (price >= 1000) fractionCnt = 0;
@@ -64,8 +64,8 @@ function beautyQuotePrice(price) {
 /**
  * 
  */
-function parseSinaQuote(id, str) {
-    var info = {id: id.replace(/^rt_/, "")};
+function parseSinaQuote(sym, str) {
+    var info = {sym: sym.replace(/^rt_/, "")};
     if (str == "") {
         return info;
     }
@@ -75,33 +75,32 @@ function parseSinaQuote(id, str) {
     arr.forEach((val, idx) => {
         debugStr.push(idx + " " + val);
     });
-    window.IsDebug && console.log("------ " + id + " ------\n" + debugStr.join("; "));
-    if (id.startsWith("hf_")) { // 期货
-        //info.name = arr[];
-        info.quoteName = arr[13];
-        info.lastQuote = parseFloat(arr[7]); // 昨收
-        info.nowQuote = parseFloat(arr[0]);
+    window.IsDebug && console.log("------ " + sym + " ------\n" + debugStr.join("; "));
+    if (sym.startsWith("hf_")) { // 期货
+        info.name = arr[13];
+        info.prevClose = parseFloat(arr[7]); // 昨收
+        info.now = parseFloat(arr[0]);
         info.date = arr[12];
         info.time = arr[6];
     }
-    else if(id.startsWith("hk") || id.startsWith("rt_hk")) {
-        info.quoteName = arr[0];
-        info.lastQuote = parseFloat(arr[3]); // 昨收
+    else if(sym.startsWith("hk") || sym.startsWith("rt_hk")) {
+        info.name = arr[0];
+        info.prevClose = parseFloat(arr[3]); // 昨收
         info.date = arr[17];
         info.time = arr[18];
 
         // 6不包含竞价, 9买1， 10卖1
-        info.nowQuote = parseFloat(arr[6]);
+        info.now = parseFloat(arr[6]);
     }
     else {
-        info.quoteName = arr[0];
-        info.lastQuote = parseFloat(arr[2]); // 昨收
-        info.nowQuote = parseFloat(arr[3]);
+        info.name = arr[0];
+        info.prevClose = parseFloat(arr[2]); // 昨收
+        info.now = parseFloat(arr[3]);
         info.date = arr[30];
         info.time = arr[31];
     }
 
-    var nowPercent = (info.nowQuote - info.lastQuote)*100.0/info.lastQuote;
+    var nowPercent = (info.now - info.prevClose)*100.0/info.prevClose;
     nowPercent = Number(nowPercent).toFixed(2);
 
     info.percent = nowPercent;
@@ -112,8 +111,8 @@ function parseSinaQuote(id, str) {
 }
 
 
-function parseQQQuote(id, str) {
-    var info = {id: id.replace(/^r_/, "")};
+function parseQQQuote(sym, str) {
+    var info = {sym: sym.replace(/^r_/, "")};
     if (str == "") {
         return info;
     }
@@ -123,27 +122,27 @@ function parseQQQuote(id, str) {
     arr.forEach((val, idx) => {
         debugStr.push(idx + " " + val);
     });
-    window.IsDebug && console.log("------ " + id + " ------\n" + debugStr.join("; "));
-    if(id.startsWith("hk") || id.startsWith("r_hk")) {
-        info.quoteName = arr[1];
-        info.lastQuote = parseFloat(arr[4]); // 昨收
-        info.nowQuote = parseFloat(arr[3]);
-        info.minQuote = parseFloat(arr[34]);
-        info.maxQuote = parseFloat(arr[33]);
+    window.IsDebug && console.log("------ " + sym + " ------\n" + debugStr.join("; "));
+    if(sym.startsWith("hk") || sym.startsWith("r_hk")) {
+        info.name = arr[1];
+        info.prevClose = parseFloat(arr[4]); // 昨收
+        info.now = parseFloat(arr[3]);
+        info.min = parseFloat(arr[34]);
+        info.max = parseFloat(arr[33]);
         info.date = arr[30].split(" ")[0];
         info.time = arr[30].split(" ")[1];
     }
     else {
-        info.quoteName = arr[1];
-        info.lastQuote = parseFloat(arr[4]); // 昨收
-        info.nowQuote = parseFloat(arr[3]);
-        info.minQuote = parseFloat(arr[34]);
-        info.maxQuote = parseFloat(arr[33]);
+        info.name = arr[1];
+        info.prevClose = parseFloat(arr[4]); // 昨收
+        info.now = parseFloat(arr[3]);
+        info.min = parseFloat(arr[34]);
+        info.max = parseFloat(arr[33]);
         info.date = arr[30].substring(0, 8);
         info.time = arr[30].substring(8).match(/\d{2}/g).join(":");
     }
 
-    var nowPercent = (info.nowQuote - info.lastQuote)*100.0/info.lastQuote;
+    var nowPercent = (info.now - info.prevClose)*100.0/info.prevClose;
     nowPercent = Number(nowPercent).toFixed(2);
 
     info.percent = nowPercent;
@@ -153,14 +152,14 @@ function parseQQQuote(id, str) {
     return info;
 }
 
-function getQuoteInfos(ids, src) {
-    ids = stdQuoteIds(ids, src);
+function getQuoteInfos(syms, src) {
+    syms = stdSecuritySymbols(syms, src);
     var isQQ = src != "sina";
     var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
     
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: urlPrefix + ids.join(","),
+            url: urlPrefix + syms.join(","),
             success: function(data) {
                 let infos = [];
                 if (data.startsWith("v_pv_none_match=")) {
@@ -171,9 +170,9 @@ function getQuoteInfos(ids, src) {
                 data.split(/[\r\n;]+/).forEach((v) => {
                     v = v.trim();
                     if (v.length == 0) return;
-                    var quoteId = v.replace(/(var hq_str_|v_)/g, "").replace(/=[^=]*/,'').replace(/["\r\n]/g, "");
+                    var sym = v.replace(/(var hq_str_|v_)/g, "").replace(/=[^=]*/,'').replace(/["\r\n]/g, "");
                     var quoteStr = v.replace(/[^=]*=/,'').replace(/["\r\n]/g, "");
-                    var info = isQQ ? parseQQQuote(quoteId, quoteStr) : parseSinaQuote(quoteId, quoteStr);
+                    var info = isQQ ? parseQQQuote(sym, quoteStr) : parseSinaQuote(sym, quoteStr);
                     infos.push(info);
                 });
                 resolve(infos);
@@ -190,24 +189,24 @@ function getQuoteInfos(ids, src) {
 /*
  * jsonp 
  */
-function getQuoteInfosJSONP(ids, src) {
-    ids = stdQuoteIds(ids, src);
+function getQuoteInfosJSONP(syms, src) {
+    syms = stdSecuritySymbols(syms, src);
     var isQQ = src != "sina";
     var urlPrefix = isQQ ? "https://qt.gtimg.cn/q=" : "https://hq.sinajs.cn/list=";
 
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: urlPrefix + ids.join(","),
+            url: urlPrefix + syms.join(","),
             dataType: "script",
             cache: "true",
             success: function(data) {
                 let infos = [];
 
-                ids.forEach(quoteId => {
+                syms.forEach(sym => {
                     var key = isQQ ? "v_" : "hq_str_";
-                    key += quoteId;
+                    key += sym;
                     var quoteStr = window[key];
-                    var info = isQQ ? parseQQQuote(quoteId, quoteStr) : parseSinaQuote(quoteId, quoteStr);
+                    var info = isQQ ? parseQQQuote(sym, quoteStr) : parseSinaQuote(sym, quoteStr);
                     infos.push(info);
                 });
                 resolve(infos);

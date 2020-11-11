@@ -55,7 +55,7 @@ $(async function() {
 
 
 
-    var infos = await getQuoteInfos([id], "qq");
+    var infos = await getSecurityInfos([id], "qq");
     if (infos.length == 0) {
         toptip.show("not found: " + id);
         $quoteTbl.hide();
@@ -76,7 +76,7 @@ $(async function() {
         var $row = $quoteTbl.find(".percent_" + percent*100);
         var $td = $("<td>");
         var price = info.lastQuote + info.lastQuote*percent/100;
-        price = beautyQuotePrice(price);
+        price = beautyPrice(price);
 
         $td.text(price);
         /*
