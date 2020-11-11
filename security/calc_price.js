@@ -21,6 +21,11 @@ $(async function() {
             toptip.show("price is empty", 5);
             return;
         }
+        price = parseFloat(price);
+        if (isNaN(price)) {
+            toptip.show("illegal price", 5);
+            return;
+        }
         cookie.set(last_calc_security_price, price, 24*30);
 
         pricePercent.forEach(percent => {
