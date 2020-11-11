@@ -29,7 +29,7 @@ function stdSecuritySymbols(syms, src) {
     var isQQ = src != "sina";
     var arr = [];
     syms.forEach(v => {
-        if (v.startsWith("#")) {
+        if (v.startsWith("#") || v.startsWith("//")) {
             return;
         }
         else if (v.startsWith("hk")) {
