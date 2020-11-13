@@ -13,14 +13,17 @@
  * 
  * 
  * quote info:
- *   sym
- *   name
- *   prevClose
- *   now
- *   min
- *   max
+ *   sym - security symbol
+ *   name - security name
+ *   prevClose - previous close price
+ *   now - now price
+ *   min - min price
+ *   max - price
  *   date
  *   time
+ * 
+ * 
+ * https://qt.gtimg.cn/?q=marketStat
  * 
  */
 

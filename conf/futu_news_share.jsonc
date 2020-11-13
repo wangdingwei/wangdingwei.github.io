@@ -2,6 +2,9 @@
     "newscnt": 6, // share news count
     "sleep_sec": 0.5, // sleep second every news
     "gen_devid_pr": 1, // 生成新的devid的概率, 百分比
+    "work_times": [
+            {"begin": "01:00:00", "end": "23:59:59"}
+    ],
     "uids": [
         11996819
     ]
