@@ -3,8 +3,9 @@
     "sleep_sec": 0.5, // sleep second every news
     "gen_devid_pr": 1, // 生成新的devid的概率, 百分比
     "time_confs": [
+            {"begin": "00:00:00", "end": "00:59:59", "newscnt": 1},
             {"begin": "01:00:00", "end": "02:59:59", "newscnt": 20},
-            {"begin": "03:00:00", "end": "23:59:59"}
+            {"begin": "03:00:00", "end": "23:59:59", "newscnt": 6}
     ],
     "uids": [
         11996819
