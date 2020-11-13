@@ -4,7 +4,7 @@
     "gen_devid_pr": 1, // 生成新的devid的概率, 百分比
     "time_confs": [ 
     // begin: %H:%M:%S  end: %H%M:%S  newscnt: optional, if not give, use global newscnt
-            {"begin": "00:00:00", "end": "00:59:59", "newscnt": 0},
+            {"begin": "00:00:00", "end": "00:59:59", "newscnt": 1},
             {"begin": "01:00:00", "end": "01:59:59", "newscnt": 20},
             {"begin": "02:00:00", "end": "02:59:59", "newscnt": 12},
             {"begin": "03:00:00", "end": "23:59:59", "newscnt": 6}
