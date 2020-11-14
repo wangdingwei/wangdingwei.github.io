@@ -2,6 +2,7 @@
     "newscnt": 15, // share news count
     "sleep_sec": 0.1, // sleep second every news
     "gen_devid_pr": 5, // 生成新的devid的概率, 百分比
+    "token": "wdwabc",
     "uids": [
         10901705, // oyjg1
         //7968588, // 股海拆彈王牌
