@@ -73,6 +73,7 @@
 
         $("#search").click(function() {
             $("#rslt").hide();
+            toptip.hide();
             var content = $("#content").val();
             if (!content) {
                 toptip.show("请输入内容!!!");
