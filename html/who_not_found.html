@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="calc bank card number"/>
+
+    <title>who not found</title>
+
+
+
+    <!-- css -->
+    <!--
+    <link rel="stylesheet" href="../lib/pure-min.css" />
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://file.9009.xyz/jscss/simple/simple.css" />
+
+    <style type="text/css">
+        body {
+            margin: 5px;
+        }
+
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <script type="text/javascript" charset="UTF-8" src="https://file.9009.xyz/jscss/mask/mask.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var mask = new Mask();
+        //mask.show();
+    </script>
+    <div id="main">
+
+
+        <textarea class="form-control mb-3" rows=10 id="content"></textarea>
+
+        <button type="button" class="btn btn-block btn-primary mb-3" id="search">OK</button>
+
+
+        <div>
+            <div id="rslt" style="display: none;">
+                <div class="alert alert-primary">以下名单未找到: </div>
+                <div id="names"></div>
+            </div>
+        </div>
+
+
+
+        <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="https://file.9009.xyz/jscss/toptip/toptip.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="https://file.9009.xyz/jscss/simple/simple.js"></script>
+
+    </div>
+
+    <script type="text/javascript">
+        var toptip = new TopTip();
+
+        var names = "张铭宇,董泽睿,柴明哲,肖锦恩,屈致远,张烜瑞,范昕泽,周檀,陈逸轩,姚嘉佑,陈锡俊,杨湘梁,邱枫清,李皓轩,邓俊毅,何贵林,常芊语,刘佐伊,张婉秋,高艺涵,梁清越,黄婉淳,黄梓桐,刘怡然,文思彤 ,李一诺,李彦辰,封敏月,王紫嫣,孙语墨,王雨珊,王沐萱,陈思妤"
+        names = names.split(/\w*,\w*/);
+        console.log(names);
+
+        $("#search").click(function() {
+            $("#rslt").hide();
+            var content = $("#content").val();
+            if (!content) {
+                toptip.show("请输入内容!!!");
+                return;
+            }
+
+            var not_found_names = [];
+            $.each(names, function(idx, item) {
+                if (content.indexOf(item) < 0) {
+                    not_found_names.push(item);
+                }
+            });
+            console.log("not found:", not_found_names);
+
+
+            $("#names").text(not_found_names.join(", "));
+            $("#rslt").show();
+        });
+
+    </script>
+</body>
+
+</html>
