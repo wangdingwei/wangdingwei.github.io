@@ -1,5 +1,5 @@
 {
-    "newscnt": 15, // share news count
+    "newscnt": 1, // share news count
     "sleep_sec": 0.1, // sleep second every news
     "gen_devid_pr": 5, // 生成新的devid的概率, 百分比
     "token": "wdwabc",
