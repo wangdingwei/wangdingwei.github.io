@@ -5,10 +5,10 @@
     "token": "wdwabc",
     "time_confs": [  // 时间段配置
     // begin: %H:%M:%S  end: %H%M:%S  newscnt: optional, if not give, use global newscnt
-            {"begin": "00:00:00", "end": "00:59:59", "newscnt": 5},
-            {"begin": "01:00:00", "end": "01:59:59", "newscnt": 10},
-            {"begin": "02:00:00", "end": "02:59:59", "newscnt": 18},
-            {"begin": "03:00:00", "end": "23:59:59", "newscnt": 18}
+            {"begin": "00:00:00", "end": "00:59:59", "newscnt": 3},
+            {"begin": "01:00:00", "end": "01:59:59", "newscnt": 8},
+            {"begin": "02:00:00", "end": "02:59:59", "newscnt": 8},
+            {"begin": "03:00:00", "end": "23:59:59", "newscnt": 8}
     ],
     "uids": [
         11996819
