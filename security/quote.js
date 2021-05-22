@@ -16,6 +16,7 @@ $(async function() {
         "hkHSI", // 恒生指数
         "sz159920", // 恒生ETF
         "hkHSCEI", // 国企指数
+        "hkHSTECH", // 恒生科技指数
         "sh510900", // H股ETF
         //"sh601111", // 国航
         //"sh600050", // 联通
