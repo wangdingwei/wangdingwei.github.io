@@ -21,9 +21,16 @@ $(function() {
             $tip.text("please input card");
             return;
         }
-        $tip.text(`begin calc: ${card}`);
+        
         cn = new CardNo(card);
         console.log(cn);
+        if (cn.err) {
+            toptip.show(cn.err);
+            return;
+        }
+
+        $tip.text(`begin calc: ${card}`);
+
         let curCnt = 0;
         let totalCnt = 0;
         let cards = "";
