@@ -38,18 +38,14 @@ $(function() {
             curCnt = 0;
         }
 
-        await cn.forEach(c => {
-            let isValidate = luhn_validate(c.replace(/[ \t]+/g, ""));
+        await cn.forEachOnlyLuhnValid(c => {
+            curCnt++;
+            totalCnt++;
             //console.log(c, isValidate);
-            if (isValidate) {
-                curCnt++;
-                totalCnt++;
-                //console.log(c, isValidate);
-                cards += c + "\n";
-                if (curCnt >= displayCnt) {
-                    doRsltCards();
-                    return 0;
-                }
+            cards += c + "\n";
+            if (curCnt >= displayCnt) {
+                doRsltCards();
+                return 0;
             }
         });
         if (curCnt > 0) {
