@@ -21,7 +21,7 @@ $(function() {
             $tip.text("please input card");
             return;
         }
-        
+
         cn = new CardNo(card);
         console.log(cn);
         if (cn.err) {
