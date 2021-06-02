@@ -6,6 +6,10 @@ $(function() {
 
 
 
+    let cardNumPattern = cookie.get("card_num_pattern");
+    if (cardNumPattern) {
+        $("#card").val(cardNumPattern);
+    }
 
 
     let $rslt = $("#rslt");
@@ -17,6 +21,7 @@ $(function() {
         $rslt.empty();
         let card = $("#card").val();
         console.log(card);
+        cookie.set("card_num_pattern", card, 24*30);
         if (!card) {
             $tip.text("please input card");
             return;
