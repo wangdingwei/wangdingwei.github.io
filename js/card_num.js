@@ -83,6 +83,7 @@ $(function() {
         val = val.replace(/[ \t]+/g, "");
         $("#card-length").text(val.length);
     }
+    calCardLen();
     $("#card").on('change keydown paste input', function() {
         calCardLen();
     });
