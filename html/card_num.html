@@ -17,7 +17,7 @@
     <!--
     <link rel="stylesheet" href="../lib/pure-min.css" />
     -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://file.9009.xyz/jscss/simple/simple.css" />
 
     <style type="text/css">
@@ -29,6 +29,13 @@
             width: 100%;
             margin: 0 auto;
             max-width: 960px;
+        }
+
+        #card-length {
+            min-width: 36px;
+            padding: 6px 6px;
+            text-align: center;
+            display: inline-block
         }
 
     </style>
@@ -45,10 +52,9 @@
 
 
         <div class="input-group mb-3">
+            <span class="input-group-text" id="card-length">0</span>
             <input class="form-control" type="text" id="card" placeholder="">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary submit" type="button">&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;</button>
-            </div>
+            <button class="btn btn-outline-secondary submit" type="button">&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
 
         <div class="alert alert-primary" role="alert">

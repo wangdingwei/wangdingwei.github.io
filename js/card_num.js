@@ -73,5 +73,11 @@ $(function() {
     });
 
 
+    $("#card").on('change keydown paste input', function() {
+        var val = $(this).val();
+        val = val.replace(/[ \t]+/g, "");
+        $("#card-length").text(val.length);
+    });
+
     mask.hide();
 });
