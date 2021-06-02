@@ -73,10 +73,13 @@ $(function() {
     });
 
 
-    $("#card").on('change keydown paste input', function() {
-        var val = $(this).val();
+    function calCardLen() {
+        var val = $("#card").val();
         val = val.replace(/[ \t]+/g, "");
         $("#card-length").text(val.length);
+    }
+    $("#card").on('change keydown paste input', function() {
+        calCardLen();
     });
 
     mask.hide();
