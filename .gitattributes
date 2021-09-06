@@ -1,10 +1,7 @@
 # vim: sw=4 et sts=4 
-
 *       text=auto
-
-
 *.sh    text eof=lf
-
 *.bat   text eof=crlf
 *.cmd   text eof=crlf
 *.ps1   text eof=crlf
+*.tgz filter=lfs diff=lfs merge=lfs -text
