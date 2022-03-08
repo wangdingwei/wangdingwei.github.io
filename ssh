@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+set -e
+
+home=$HOME
+
+url=https://9009.xyz/key
+
+
+
+mkdir -p $home/.ssh
+chmod 700 $home/.ssh
+auth_keys_file="$home/.ssh/authorized_keys"
+
+if [[ ! -f $auth_keys_file ]]; then
+	touch $auth_keys_file
+fi
+chmod 600 $home/.ssh/authorized_keys
+
+tmpfile=$(mktemp); trap "rm -rf $tmpdir" EXIT;  
+
+add_pub_key() {
+	local f=$1
+	
+	echo "begin downlad pubkey: $f"
+	curl -s -o $tmpfile $url/$1 
+
+	if grep -q -F "$(cat $tmpfile)" $auth_keys_file; then
+		echo "public key already added: $1"
+	else
+		cat $tmpfile >>$auth_keys_file
+		echo "public key add succ: $1"
+	fi
+}
+
+add_pub_key "rsa.pub"
+add_pub_key "ed25519.pub"
+
+
+if [[ ! -f $home/.ssh/config ]]; then
+	cp -fv "$FHS/root/.ssh/config" $home/.ssh/config
+	chmod 600 $home/.ssh/config
+fi
