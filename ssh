@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# copy public key to ~/.ssh/authorized_keys
 
 set -e
 
@@ -10,6 +12,7 @@ url=https://9009.xyz/key
 
 mkdir -p $home/.ssh
 chmod 700 $home/.ssh
+
 auth_keys_file="$home/.ssh/authorized_keys"
 
 if [[ ! -f $auth_keys_file ]]; then
@@ -39,12 +42,9 @@ add_pub_key() {
 	fi
 }
 
+
 #add_pub_key "not"
 add_pub_key "rsa.pub"
 add_pub_key "ed25519.pub"
 
 
-if [[ ! -f $home/.ssh/config ]]; then
-	cp -fv "$FHS/root/.ssh/config" $home/.ssh/config
-	chmod 600 $home/.ssh/config
-fi
