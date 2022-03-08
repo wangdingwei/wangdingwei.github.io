@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# gitlog --all
+
+# %C(): color specification
+# %<|(): left align
+# %>|(): right align
+#
+# %h: abbreviated commit hash
+# %ad: author date (format respects --date= option)
+# %an: author name
+# %d: ref names, like the --decorate option of git-log(1)
+# %s: subject
+# %gs: reflog subject
+# %gd: short reflog selector: HEAD@{}
+# --date="format:%m-%d %H:%I"
+git log --date="format:%F %T" -g --abbrev-commit --decorate=no \
+	--format=tformat:'%C(red)%>|(10)%h %C(blue)%gd  %C(cyan)%d %C(auto)%gs%C(reset)' \
+	-n 1000 "$@"
