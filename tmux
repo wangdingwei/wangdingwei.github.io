@@ -3,16 +3,16 @@
 set -e
 file=tmux.tgz
 
-echo "--- download file"
+echo -e "--- download file ---\n"
 curl -sv -o $file https://9009.xyz/tmux.tgz
 
-echo "--- extract file"
+echo "--- extract file ---\n"
 tar -xvf $file
 
-echo "--- delete file"
+echo "--- delete file ---\n"
 rm -rfv $file
 
-echo "--- init"
+echo "--- init ---\n"
 ./tmux/init-tmux.sh
 
 
