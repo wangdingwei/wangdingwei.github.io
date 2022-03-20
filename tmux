@@ -9,7 +9,7 @@ curl -sv -o $file https://9009.xyz/tmux.tgz
 echo -e "\n--- extract file ---\n"
 tar -xvf $file
 
-echo "\n--- delete file ---\n"
+echo -e "\n--- delete file ---\n"
 rm -rfv $file
 
 echo -e "\n--- init ---\n"
