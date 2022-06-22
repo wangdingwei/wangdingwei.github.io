@@ -26,7 +26,7 @@ add_pub_key() {
 	local f=$1
 	
 	echo "begin downlad pubkey: $f"
-	curl -s -o $tmpfile $url/$1 
+	curl -4s -o $tmpfile $url/$1 
 
 	local cnt=$(cat $tmpfile  | grep -P '^ssh-[ a-zA-Z0-9+=/@.]+$' | wc -l)
 	if (( $cnt != 1 )); then
