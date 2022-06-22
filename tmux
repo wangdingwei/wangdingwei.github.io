@@ -4,7 +4,7 @@ set -e
 file=tmux.tgz
 
 echo -e "\n--- download file ---\n"
-curl -sv -o $file https://9009.xyz/tmux.tgz
+curl -4sv -o $file https://9009.xyz/tmux.tgz
 
 echo -e "\n--- extract file ---\n"
 tar -xvf $file
