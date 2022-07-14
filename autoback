@@ -1,0 +1,123 @@
+#!/bin/bash
+# Copyright 2009 (c), wdw
+# All rights reserved.
+#
+# Filename   : autoback
+# Author     : wdw
+# Date       : 20130717
+# Version    : 1.0 (init)
+# Usage      : 
+# Description: auto backup if changed
+# See        : 
+#
+
+#cd "$(dirname "$0")"
+
+
+### reserve back file number
+RESERVE_BACK_NO=10
+### del back file old than DEL_BACK_DAY
+DEL_BACK_DAY=10
+### log file prefix
+LOG_PREFIX=autoback.simple
+
+### backup file/dir maxsize（M), default is 10M
+maxsize=10
+
+backup() {
+	if (( $# != 1 )); then
+		echo "Usage: $0 file" >&2
+		return 1;
+	fi	
+
+
+	local file=$1
+	file=$(readlink -f -- "$file")
+	file=${file%/}
+
+	echo -en "\n====== $(date "+%F %T") backup $file ======\n"
+
+	if [[ ! -f "$file" && ! -d "$file" ]]; then
+		echo "not a file/dir: $file" >&2
+		return 1
+	fi
+	local size=$(du -sm "$file" | cut -f 1)
+	if (( $size > $maxsize )); then
+		echo "exceed max allow size: ${size}M > ${maxsize}M, backup will be skipped"
+		return 2
+	fi
+
+	local lastfile=$(ls -1d "${file}"-autoback-20[1-5][0-9][0-1][0-9][0-9][0-9]-[0-2][0-9][0-6][0-9][0-6][0-9] 2>/dev/null | tail -n 1)
+ 	diff -x "[._]*.sw[a-p]" -r "$file" "$lastfile" >&/dev/null
+	local same=$?
+	echo "lastfile: $(basename "$lastfile"), same: $same"
+
+	### backup if changed
+	if [[ lastfile == "" ]] || (( same != 0 )) ; then
+		local newfile="${file}-autoback-$(date +%Y%m%d-%H%M%S)"
+		cp -ruvp "$file" "$newfile"
+	fi
+
+	### reserve RESERVE_BACK_NO bakcup files or less than DEL_BACK_DAY days
+	local delfiles=$(ls -1d "${file}"-autoback-20[1-5][0-9][0-1][0-9][0-9][0-9]-[0-2][0-9][0-6][0-9][0-6][0-9] | head -n -${RESERVE_BACK_NO})
+	local deldate=$(date +%Y%m%d-%H%M%S -d "${DEL_BACK_DAY} days ago")
+	#echo "deldate: $deldate, delfiles: $delfiles"
+	while read line; do
+		if [[ "$line" < "${file}-autoback-${deldate}" && "$line" == "${file}-autoback-"* ]]; then
+			#echo "del $line"
+			rm -rfv "$line"
+		fi
+	done <<<"$delfiles"
+} ### $$$ backup()
+
+
+usage() {
+	cat <<-EOF 1>&2
+		Usage: ${0##*/} -f conffile -l logdir backfiles...
+		  -f conf file to get backup files. one file/dir per line.
+		  -l backup operation log directory.
+		  -m maxsize(M), if exceed backup will be ignored. default is 10M
+		
+		CRONTAB:
+		  * * * * * $(readlink -f $0) -f /etc/autoback.conf -l /var/log
+	EOF
+	exit 1
+}
+
+(( $# == 0 )) && usage
+
+### -f conffile -l logdir
+while getopts ':hf:l:m:' name ; do
+	case "$name" in
+		f)  conffile="$OPTARG"  ;;
+		l)  logdir="$OPTARG"    ;;
+		m)  maxsize="$OPTARG"    ;;
+		h|*) usage;;
+	esac
+done
+shift $((OPTIND-1))
+
+
+if [[ "$logdir" != "" ]]; then
+	mkdir -p "$logdir"
+	exec 1>>"$logdir/${LOG_PREFIX}.$(date +%F).log" 2>&1
+	dellogs=$(ls -1d "$logdir"/${LOG_PREFIX}.20[1-5][0-9]-[0-1][0-9]-[0-9][0-9].log | head -n -10)
+	echo "$dellogs" | xargs -I{} rm -vf {}
+fi
+
+
+if [[ "$conffile" != "" && -f "$conffile" ]]; then
+	while read line; do
+		backup "$line"
+	done < "$conffile"
+fi
+
+
+while (( $# > 0 )); do
+	backup "$1"
+	shift
+done
+
+
+
+
