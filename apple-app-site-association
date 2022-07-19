@@ -1,0 +1,17 @@
+{
+	"applinks":
+	{
+		"apps": [],
+		"details":
+		[
+			{
+				"appID": "9TV4ZYSS4J.com.tencent.tmgp.fa",
+				"paths": ["/app/*", "/qq_conn/1109168186/*"]
+			},
+			{
+				"appID": "HKB8WPFBR9.com.tencent.tmgp.fa.db",
+				"paths": ["*"]
+			}
+		]
+	}
+}
