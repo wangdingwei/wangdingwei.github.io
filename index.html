@@ -23,7 +23,13 @@
 
 
 <script type="text/javascript" charset="UTF-8">
-	window.location = "itms-apps://itunes.apple.com/app/id1597717185";
+	var ua = navigator.userAgent.toLowerCase();
+	var isAndroid = ua.indexOf("android") > -1; 
+	if(isAndroid) {
+		window.location = "market://details?id=com.square_enix.android_googleplay.FullmetalAlchemistMobilejp";
+	} else {
+		window.location = "itms-apps://itunes.apple.com/app/id1597717185";
+	}
 </script>
 
 </body>
