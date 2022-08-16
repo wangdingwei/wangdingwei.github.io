@@ -1,0 +1,13 @@
+{
+	"applinks":
+	{
+		"apps": [],
+		"details":
+		[
+			{
+				"appID": "HKB8WPFBR9.com.tencent.tmgp.fa.db",
+				"paths": ["*"]
+			}
+		]
+	}
+}
