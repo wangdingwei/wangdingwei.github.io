@@ -13,6 +13,9 @@ variables:
 
 
 include:
-  - remote: https://file.9009.xyz/gitlab/ci/get-404-page.yml
-  - remote: https://file.9009.xyz/gitlab/ci/pages.yml
-  - remote: https://file.9009.xyz/gitlab/ci/purge-cloudflare-cache.yml
+  #- remote: https://file.9009.xyz/gitlab/ci/get-404-page.yml
+  #- remote: https://file.9009.xyz/gitlab/ci/pages.yml
+  #- remote: https://file.9009.xyz/gitlab/ci/purge-cloudflare-cache.yml
+  - local: gitlab/ci/minify.yml
+  - local: gitlab/ci/pages.yml
+  - local: gitlab/ci/purge-cloudflare-cache.yml
