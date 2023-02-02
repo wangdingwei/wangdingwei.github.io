@@ -48,7 +48,9 @@
             console.log();
             console.log("--- begin test ---");
 
-            let timeoutMS = random(1, 60)*60*100;
+            const timeoutMin = random(1, 120);
+            console.log(`timeoutMin: ${timeoutMin}`);
+            const timeoutMS = timeoutMin*60*1000;
 
             let beginDate = new Date();
             console.log(`now is: ${dateToMSStr(beginDate)}`)
@@ -57,7 +59,7 @@
             setTimeout(() => {
                 let workDate = new Date();
                 console.log(`work: ${dateToMSStr(workDate)}`);
-                console.log(`diff: ${workDate.getTime() - beginDate.getTime() - timeoutMS}`)
+                console.log(`diff: ${workDate.getTime() - beginDate.getTime() - timeoutMS}ms`)
 
                 test();
             }, timeoutMS);
