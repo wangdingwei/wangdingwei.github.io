@@ -1,0 +1,3 @@
+[submodule "jscsslib"]
+	path = jscsslib
+	url = ../../web4wdw/jscsslib.git
