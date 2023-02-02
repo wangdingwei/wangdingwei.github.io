@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../lib/pure-min.css" />
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../ibjscss/simple/simple.css" />
+    <link rel="stylesheet" href="../libjscss/simple/simple.css" />
 
     <style type="text/css">
         body {
@@ -37,14 +37,33 @@
     </div>
 
     <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../ibjscss/toptip/toptip.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../ibjscss/simple/simple.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libjscss/toptip/toptip.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libjscss/simple/simple.js"></script>
 
     <script type="text/javascript" charset="UTF-8">
 
         function test() {
+            console.log();
+            console.log();
+            console.log();
+            console.log("--- begin test ---");
 
+            let timeoutMS = random(1, 60)*60*100;
+
+            let beginDate = new Date();
+            console.log(`now is: ${dateToMSStr(beginDate)}`)
+            console.log(`will work: ${dateToMSStr(beginDate.getTime() + timeoutMS)}`)
+
+            setTimeout(() => {
+                let workDate = new Date();
+                console.log(`work: ${dateToMSStr(workDate)}`);
+                console.log(`diff: ${workDate.getTime() - beginDate.getTime() - timeoutMS}`)
+
+                test();
+            }, timeoutMS);
         }
+
+        test();
 
     </script>
 </body>
