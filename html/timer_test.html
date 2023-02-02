@@ -48,9 +48,10 @@
             console.log();
             console.log("--- begin test ---");
 
-            const timeoutMin = random(1, 120);
+            let timeoutMin = random(1, 120);
             console.log(`timeoutMin: ${timeoutMin}`);
-            const timeoutMS = timeoutMin*60*1000;
+            let timeoutMS = timeoutMin*60*1000;
+            //timeoutMS = timeoutMin*1000; // test code
 
             let beginDate = new Date();
             console.log(`now is: ${dateToMSStr(beginDate)}`)
