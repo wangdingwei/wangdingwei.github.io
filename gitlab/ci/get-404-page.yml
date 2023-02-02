@@ -1,0 +1,20 @@
+# vim: sw=2 et sts=2
+
+# need stage pre
+
+
+
+get-404-page:
+  image: alpine:latest
+  stage: pre
+  script:
+  - pwd
+  - ls -l
+  - apk add curl
+  - curl -v -s -o 404.html https://file.9009.xyz/404.html
+  artifacts:
+    expire_in: 15 days
+    paths:
+    - 404.html
+
+

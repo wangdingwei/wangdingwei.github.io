@@ -1,0 +1,20 @@
+# vim: sw=2 et sts=2
+
+# need stage minify
+
+
+# pages is a special job that is used for GitLab pages
+minify:
+  image: node:latest
+  stage: minify
+  before_script:
+    - npm install uglify-js -g
+    - npm install uglifycss -g
+  script:
+  - ./minify.sh
+  artifacts:
+    expire_in: 15d
+  only:
+  - master
+
+

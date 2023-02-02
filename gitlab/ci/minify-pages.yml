@@ -1,0 +1,28 @@
+# vim: sw=2 et sts=2
+
+# need stage deploy
+# it is beter in deploy stage, because page:deploy job will be trigger in deploy stage.
+
+
+# pages is a special job that is used for GitLab pages
+pages:
+  image: debian:latest
+  stage: deploy
+  before_script:
+  - apt update
+  - apt install -y nodejs npm
+  - npm install uglify-es -g
+  - npm install uglifycss -g
+  script:
+  - ./minify.sh
+  - mkdir .public
+  - find . -iname .git -prune -o -print
+  - cp -rv * .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
+

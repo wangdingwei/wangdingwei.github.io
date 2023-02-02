@@ -1,0 +1,22 @@
+# vim: sw=2 et sts=2
+
+# need stage post
+
+
+
+purge-cloudflare-cache:
+  image: alpine:latest
+  stage: post
+  script:
+  - pwd
+  - ls -l
+  - apk add curl
+  - >
+    curl -X POST "https://api.cloudflare.com/client/v4/zones/5565535e2746cacf611cd0aac4804137/purge_cache" 
+    -H "X-Auth-Email: wangdingwei@qq.com" 
+    -H "X-Auth-Key: 849b9589cabf2930b41938c8e18d29a9686f6" 
+    -H "Content-Type: application/json" 
+    --data '{"purge_everything":true}'
+    # 9009.xyz
+
+

@@ -1,0 +1,21 @@
+# vim: sw=2 et sts=2
+
+# need stage deploy
+# it is beter in deploy stage, because page:deploy job will be trigger in deploy stage.
+
+
+# pages is a special job that is used for GitLab pages
+pages:
+  image: alpine:latest
+  stage: deploy
+  script:
+  - mkdir .public
+  - find . -iname .git -prune -o -print
+  - cp -rv * .public
+  - '[[ -d .well-known ]] && cp -rv .well-known .public'
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+
+
