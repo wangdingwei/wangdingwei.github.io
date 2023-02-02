@@ -5,6 +5,7 @@ image: alpine:latest
 
 stages:
   - pre
+  - minify
   - deploy
   - post
 
