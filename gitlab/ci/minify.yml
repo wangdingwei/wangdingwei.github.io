@@ -11,6 +11,10 @@ minify:
     - npm install uglifycss -g
   script:
     - ./minify.sh
-  artifacts:
+  artifacts: # artifact文件才会传递给后续的job
+    expire_in: 7d 
+    paths:
+      - '**.min.js'
+      - '**.min.css'
 
 

@@ -18,6 +18,7 @@ pages:
   - mkdir .public
   - find . -iname .git -prune -o -print
   - cp -rv * .public
+  - '[[ -d .well-known ]] && cp -rv .well-known .public'
   - mv .public public
   artifacts:
     paths:
