@@ -6,7 +6,7 @@
 # pages is a special job that is used for GitLab pages
 minify:
   image: node:latest
-  stage: minify
+  stage: minifyabc
   before_script:
     - npm install uglify-js -g
     - npm install uglifycss -g
