@@ -42,18 +42,18 @@
 
     <script type="text/javascript" charset="UTF-8">
 
+        console.log(d2ms());
+
         function test() {
-            console.log();
-            console.log();
-            console.log();
+            console.log("\n");
+            console.log("\n");
             console.log("--- begin test ---");
 
-            let timeoutMin = random(1, 120);
-            console.log(`timeoutMin: ${timeoutMin}`);
-            let timeoutMS = timeoutMin*60*1000;
-            //timeoutMS = timeoutMin*1000; // test code
+            let timeoutSec = random(1, 60);
+            console.log(`timeout(min): ${timeoutSec/60}, timeout(sec): ${timeoutSec}`);
 
-            let beginDate = new Date();
+            const timeoutMS = timeoutSec*1000;
+            const beginDate = new Date();
             console.log(`now is: ${dateToMSStr(beginDate)}`)
             console.log(`will work: ${dateToMSStr(beginDate.getTime() + timeoutMS)}`)
 
@@ -66,7 +66,19 @@
             }, timeoutMS);
         }
 
-        test();
+        //test();
+
+
+        let lastTm = Date.now();
+        setInterval(() => {
+            let now = Date.now();
+            let diff = now - lastTm;
+            if (diff >= 2000) {
+                console.log(d2ms(), `delay: ${diff}ms`);
+            }
+            lastTm = now;
+        }, 1000);
+
 
     </script>
 </body>
