@@ -1,6 +1,6 @@
 # vim: sw=2 et sts=2
 
-# need stage minify
+# need stage min
 
 
 minify:
@@ -10,9 +10,9 @@ minify:
     - npm install uglify-js -g
     - npm install uglifycss -g
   script:
-  - ./minify.sh
+    - ./minify.sh
   artifacts:
   only:
-  - master
+    - master
 
 
