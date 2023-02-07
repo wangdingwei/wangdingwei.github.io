@@ -16,5 +16,8 @@ minify:
     paths:
       - '**.min.js'
       - '**.min.css'
+  only:
+    - master
+    - main
 
 
