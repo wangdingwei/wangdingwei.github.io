@@ -51,7 +51,7 @@
 
         <div>
             <div id="rslt" style="display: none;">
-                <div class="alert alert-primary">以下名单未找到(一共<span id="cnt"></span>位): </div>
+                <div class="alert alert-primary">以下名单未找到(共<span id="cnt"></span>位): </div>
                 <div id="names"></div>
             </div>
         </div>
@@ -76,7 +76,7 @@
         $("#search").click(function() {
             $("#rslt").hide();
             toptip.hide();
-            var content = $("#content").val();
+            var content = $("#content").val().replace(/\s+/g,'').replace(/\p{Z}/ug,'');
             if (!content) {
                 toptip.show("请输入内容!!!");
                 return;
