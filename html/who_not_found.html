@@ -51,7 +51,7 @@
 
         <div>
             <div id="rslt" style="display: none;">
-                <div class="alert alert-primary">以下名单未找到: </div>
+                <div class="alert alert-primary">以下名单未找到(一共<span id="cnt"></span>位): </div>
                 <div id="names"></div>
             </div>
         </div>
@@ -92,6 +92,7 @@
             toptip.show("执行成功", 3);
 
 
+            $("#cnt").text(not_found_names.length);
             $("#names").text(not_found_names.join(", "));
             $("#rslt").show();
         });
