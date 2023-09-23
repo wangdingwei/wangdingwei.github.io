@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content=""/>
+
+    <title>table html</title>
+
+
+
+
+    <style type="text/css">
+        body {
+            margin: 5px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/handsontable@13.1/dist/handsontable.full.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@13.1/dist/handsontable.full.min.css" /> 
+
+
+    
+    <div id="tips" style="color: red;">init</div>
+    <div id="example1" class="hot "></div>
+      
+
+    <div id="main">
+
+
+    </div>
+
+    <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" charset="UTF-8">
+
+    setTimeout(() => {
+
+        const container = document.querySelector('#example1');
+        var hot = new Handsontable(container, {
+            data: Handsontable.helper.createSpreadsheetData(2000000, 5),
+            readOnly: true,
+            className: 'bg-read-only',
+            width: 'auto',
+            height: '600px',
+            rowHeaders: true,
+            colHeaders: true,
+            licenseKey: 'non-commercial-and-evaluation'
+        });
+        
+        
+        document.getElementById('tips').innerHTML = "ready!!!";
+    }, 10);
+
+
+    </script>
+</body>
+
+</html>
