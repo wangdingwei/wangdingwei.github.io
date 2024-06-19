@@ -11,7 +11,7 @@
 # %an: author name
 # %d: ref names, like the --decorate option of git-log(1)
 # %s: subject
-# --date="format:%m-%d %H:%I"
-git log --date="format:%F %T" --graph --abbrev-commit --decorate=no --date-order \
+# --date="format-local:%m-%d %H:%I"
+git log --date="format-local:%F %T" --graph --abbrev-commit --decorate=no --date-order \
 	--format=tformat:'%C(red)%>|(25)%h %C(blue)%ad %C(green)%<(10,trunc)%an %C(cyan)%d %C(auto)%s%C(reset)'  \
 	-n 1000 "$@"
