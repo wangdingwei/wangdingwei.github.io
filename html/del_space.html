@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="calc bank card number"/>
+
+    <title>who not found</title>
+
+
+
+    <!-- css -->
+    <!--
+    <link rel="stylesheet" href="../lib/pure-min.css" />
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../libjscss/simple/simple.css" />
+
+    <style type="text/css">
+        body {
+            margin: 5px;
+        }
+
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <script type="text/javascript" charset="UTF-8" src="../libjscss/mask/mask.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var mask = new Mask();
+        //mask.show();
+    </script>
+    <div id="main">
+
+
+        <textarea class="form-control mb-3" rows=15 id="origin"></textarea>
+
+        <button type="button" class="btn btn-block btn-primary mb-3" id="btn">just do it</button>
+
+        <textarea class="form-control mb-3" rows=15 id="rslt" readonly="true"></textarea>
+
+
+
+
+
+        <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libjscss/toptip/toptip.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libjscss/simple/simple.js"></script>
+
+    </div>
+
+    <script type="text/javascript">
+        var toptip = new TopTip();
+
+        $("#content").val("");
+
+        var names = "郜塔娜,马莞清,饶欣莹,孙睿琳,孙睿熙,汤荀,汪书玥,汪筱沫,王圣溪,王晞橦,王歆娮,吴艺苓,谢梦兰,熊灵兮,徐缪萌,许佳茜,薛正琦,姚沐熙,姚淞涵,赵珝翊,周玥,周泽恬,丁梓琛,方麒骅,方麒骁,胡俊烨,黄嘉懿,孔佑屹,雷万钧,李桐,李羿轩,刘梓墨,陆一航,沈雨臣,王沐萱,吴嘉珵,徐子洋,薛凯文,杨清睿,杨湘梁,殷正浩,袁海宸,臧涵,张珵宥,张嘉睿"
+        names = names.split(/\s*,\s*/);
+        console.log(names);
+
+        $("#btn").click(function() {
+
+            $("#rslt").val("");
+
+            let str = $("#origin").val();
+
+            let rslt = str
+                .replace(/(^\s+|\s+$)/gm, '') // 去除首尾空白符
+                .split('\n') // 分割成数组
+                .filter(line => line !== '') // 过滤空白行
+                .join("\n");
+            
+            $("#rslt").val(rslt);
+
+            toptip.show("done", 5);
+
+        });
+
+    </script>
+</body>
+
+</html>
