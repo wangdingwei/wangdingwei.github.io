@@ -63,11 +63,6 @@
     <script type="text/javascript">
         var toptip = new TopTip();
 
-        $("#content").val("");
-
-        var names = "郜塔娜,马莞清,饶欣莹,孙睿琳,孙睿熙,汤荀,汪书玥,汪筱沫,王圣溪,王晞橦,王歆娮,吴艺苓,谢梦兰,熊灵兮,徐缪萌,许佳茜,薛正琦,姚沐熙,姚淞涵,赵珝翊,周玥,周泽恬,丁梓琛,方麒骅,方麒骁,胡俊烨,黄嘉懿,孔佑屹,雷万钧,李桐,李羿轩,刘梓墨,陆一航,沈雨臣,王沐萱,吴嘉珵,徐子洋,薛凯文,杨清睿,杨湘梁,殷正浩,袁海宸,臧涵,张珵宥,张嘉睿"
-        names = names.split(/\s*,\s*/);
-        console.log(names);
 
         $("#btn").click(function() {
 
@@ -76,7 +71,7 @@
             let str = $("#origin").val();
 
             let rslt = str
-                .replace(/(^\s+|\s+$)/gm, '') // 去除首尾空白符
+                .replace(/(^\s+|\s+$)/g, '') // 去除首尾空白符
                 .split('\n') // 分割成数组
                 .filter(line => line !== '') // 过滤空白行
                 .join("\n");
