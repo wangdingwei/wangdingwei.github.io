@@ -71,7 +71,7 @@
             let str = $("#origin").val();
 
             let rslt = str
-                .replace(/(^\s+|\s+$)/g, '') // 去除首尾空白符
+                .replace(/(^[ \t]+|[ \t]+$)/gm, '') // 去除首尾空白符
                 .split('\n') // 分割成数组
                 .filter(line => line !== '') // 过滤空白行
                 .join("\n");
