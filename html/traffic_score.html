@@ -74,7 +74,7 @@
             }
         }
 
-        const point1 = [
+        const score1 = [
 
             "不按规定会车", "在高速公路、城市快速路以外的道路上不按规定倒车、掉头的",
             "不按规定使用灯光",
@@ -87,7 +87,7 @@
 
         ];
 
-        const point3 = [
+        const score3 = [
 
             "驾驶机动车在高速公路或者城市快速路上不按规定车道行驶的",
             "驾驶机动车不按规定超车、让行",
@@ -105,7 +105,7 @@
             "驾驶机动车在高速公路上行驶低于规定最低时速的",
         ];
 
-        const point6 = [
+        const score6 = [
 
 
             "驾驶载货汽车载物超过最大允许总质量百分之五十以上的",
@@ -120,7 +120,7 @@
             "驾驶机动车在高速公路或者城市快速路上违法占用应急车道行驶的",
         ];
 
-        const point9 = [
+        const score9 = [
             "驾驶机动车在高速公路或者城市快速路上违法停车的",
 
             "驾驶未悬挂机动车号牌或者故意遮挡、污损机动车号牌的机动车上道路行驶的",
@@ -131,7 +131,7 @@
             "连续驾驶中型以上载客汽车、危险物品运输车辆超过4小时未停车休息或者停车休息时间少于20分钟的",
         ];
 
-        const point12 = [
+        const score12 = [
             "饮酒后驾驶机动车的",
             "造成致人轻伤以上或者死亡的交通事故后逃逸，尚不构成犯罪的",
             "使用伪造、变造的机动车号牌、行驶证、驾驶证、校车标牌或者使用其他机动车号牌、行驶证的",
@@ -140,17 +140,26 @@
             "代替实际机动车驾驶人接受交通违法行为处罚和记分牟取经济利益的",
         ];
 
-        let points = point1.concat(point3).concat(point6).concat(point9).concat(point12);
+        //let scores = score1.concat(score3).concat(score6).concat(score9).concat(score12);
 
-        shuffleArray(points);
-
+        //shuffleArray(scores);
 
         let $items = $("#items");
-        for (const p of points) {
-            let $i = $('<li class="list-group-item"></li>');
-            $i.text(p);
-            $items.append($i);
+        function dealScores(scoreArray, score) {
+            for (const txt of scoreArray) {
+                let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill score">14</span></li>');
+                $i.find(".txt").text(txt);
+                $i.find(".score").data("score", score);
+                $items.append($i);
+            }
         }
+        dealScores(score1, 1);
+        dealScores(score3, 3);
+        dealScores(score6, 6);
+        dealScores(score9, 9);
+        dealScores(score12, 12);
+
+
 
 
     </script>
