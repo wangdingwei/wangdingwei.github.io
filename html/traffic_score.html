@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="calc bank card number"/>
+
+    <title>who not found</title>
+
+
+
+    <!-- css -->
+    <!--
+    <link rel="stylesheet" href="../lib/pure-min.css" />
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../libjscss/simple/simple.css" />
+
+    <style type="text/css">
+        body {
+            margin: 5px;
+        }
+
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <script type="text/javascript" charset="UTF-8" src="../libjscss/mask/mask.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        var mask = new Mask();
+        //mask.show();
+    </script>
+    <div id="main">
+
+
+        <div id="content">
+
+        </div>
+
+        <ul class="list-group" id="items">
+            <!--
+            <li class="list-group-item">An item</li>
+            -->
+          </ul>
+
+
+
+
+        <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libjscss/toptip/toptip.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libjscss/simple/simple.js"></script>
+
+    </div>
+
+    <script type="text/javascript">
+        var toptip = new TopTip();
+
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        const point1 = [
+
+            "不按规定会车", "在高速公路、城市快速路以外的道路上不按规定倒车、掉头的",
+            "不按规定使用灯光",
+            "违反禁令标志、禁止标线指示的",
+            "驾驶机动车载货长度、宽度、高度超过规定的",
+            "未按规定定期进行安全技术检验的公路客运汽车、旅游客运汽车、危险物品运输车辆以外的机动车上道路行驶的",
+            "驾驶擅自改变已登记的结构、构造或者特征的载货汽车上道路行驶的",
+            "驾驶机动车在道路上行驶时，机动车驾驶人未按规定系安全带的",
+            "驾驶摩托车，不戴安全头盔的",
+
+        ];
+
+        const point3 = [
+
+            "驾驶机动车在高速公路或者城市快速路上不按规定车道行驶的",
+            "驾驶机动车不按规定超车、让行",
+            "在高速公路、城市快速路以外的道路上逆行的",
+            "驾驶机动车遇前方机动车停车排队或者缓慢行驶时，借道超车或者占用对面车道、穿插等候车辆的",
+            "驾驶机动车有拨打、接听手持电话等妨碍安全驾驶的行为的",
+            "驾驶机动车行经人行横道不按规定减速、停车、避让行人的",
+            "驾驶机动车不按规定避让校车的",
+            "驾驶载货汽车,违反规定载客的",
+            "驾驶不按规定安装机动车号牌的机动车上道路行驶的",
+            "在道路上车辆发生故障、事故停车后，不按规定使用灯光或者设置警告标志的",
+            "驾驶未按规定定期进行安全技术检验的公路客运汽车、旅游客运汽车、危险物品运输车辆上道路行驶的",
+            "驾驶校车上道路行驶前，未对校车车况是否符合安全技术要求进行检查，或者驾驶存在安全隐患的校车上道路行驶的",
+            "连续驾驶载货汽车超过4小时未停车休息或者停车休息时间少于20分钟的",
+            "驾驶机动车在高速公路上行驶低于规定最低时速的",
+        ];
+
+        const point6 = [
+
+
+            "驾驶载货汽车载物超过最大允许总质量百分之五十以上的",
+
+            "驾驶机动车载运爆炸物品、易燃易爆化学物品以及剧毒、放射性等危险物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志并采取必要的安全措施的",
+            "驾驶机动车运载超限的不可解体的物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志的",
+            "驾驶机动车运输危险化学品，未经批准进入危险化学品运输车辆限制通行的区域的",
+
+            "驾驶机动车不按交通信号灯指示通行的",
+            "机动车驾驶证被暂扣或者扣留期间驾驶机动车的",
+            "造成致人轻微伤或者财产损失的交通事故后逃逸，尚不构成犯罪的",
+            "驾驶机动车在高速公路或者城市快速路上违法占用应急车道行驶的",
+        ];
+
+        const point9 = [
+            "驾驶机动车在高速公路或者城市快速路上违法停车的",
+
+            "驾驶未悬挂机动车号牌或者故意遮挡、污损机动车号牌的机动车上道路行驶的",
+
+            "驾驶与准驾车型不符的机动车的",
+            "未取得校车驾驶资格驾驶校车的",
+
+            "连续驾驶中型以上载客汽车、危险物品运输车辆超过4小时未停车休息或者停车休息时间少于20分钟的",
+        ];
+
+        const point12 = [
+            "饮酒后驾驶机动车的",
+            "造成致人轻伤以上或者死亡的交通事故后逃逸，尚不构成犯罪的",
+            "使用伪造、变造的机动车号牌、行驶证、驾驶证、校车标牌或者使用其他机动车号牌、行驶证的",
+
+            "驾驶机动车在高速公路、城市快速路上倒车、逆行、穿越中央分隔带掉头的",
+            "代替实际机动车驾驶人接受交通违法行为处罚和记分牟取经济利益的",
+        ];
+
+        let points = point1.concat(point3).concat(point6).concat(point9).concat(point12);
+
+        shuffleArray(points);
+
+
+        let $items = $("#items");
+        for (const p of points) {
+            let $i = $('<li class="list-group-item"></li>');
+            $i.text(p);
+            $items.append($i);
+        }
+
+
+    </script>
+</body>
+
+</html>
