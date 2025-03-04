@@ -149,7 +149,7 @@
             for (const txt of scoreArray) {
                 let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill d-none score">88</span></li>');
                 $i.find(".txt").text(txt);
-                $i.find(".score").data("score", score);
+                $i.find(".score").text(score);
                 $items.append($i);
             }
         }
@@ -166,8 +166,7 @@
 
         $items.find("li").on("dblclick", function() {
             let $li = $(this);
-            let score = $li.data("score");
-            $li.find(".score").removeClass("d-none").text(score);
+            $li.find(".score").removeClass("d-none");
         });
 
     </script>
