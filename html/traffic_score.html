@@ -108,7 +108,7 @@
         const score6 = [
 
 
-            "驾驶载货汽车载物超过最大允许总质量百分之五十以上的",
+            "载货汽车载物超过最大允许总质量百分之五十以上的",
 
             "驾驶机动车载运爆炸物品、易燃易爆化学物品以及剧毒、放射性等危险物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志并采取必要的安全措施的",
             "驾驶机动车运载超限的不可解体的物品，未按指定的时间、路线、速度行驶或者未悬挂警示标志的",
@@ -121,7 +121,7 @@
         ];
 
         const score9 = [
-            "驾驶机动车在高速公路或者城市快速路上违法停车的",
+            "高速公路或者城市快速路上违法停车的",
 
             "驾驶未悬挂机动车号牌或者故意遮挡、污损机动车号牌的机动车上道路行驶的",
 
@@ -147,7 +147,7 @@
         let $items = $("#items");
         function dealScores(scoreArray, score) {
             for (const txt of scoreArray) {
-                let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill score">14</span></li>');
+                let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill hide score">14</span></li>');
                 $i.find(".txt").text(txt);
                 $i.find(".score").data("score", score);
                 $items.append($i);
@@ -164,7 +164,11 @@
         shuffleArray(items); 
         $items.empty().append(items);
 
-
+        $items.find("li").on("dblclick", function() {
+            let $li = $(this);
+            let score = $li.data("score");
+            $li.find(".score").removeClass(hide).text(score);
+        });
 
     </script>
 </body>
