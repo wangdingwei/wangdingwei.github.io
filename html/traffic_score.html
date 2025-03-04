@@ -160,6 +160,10 @@
         dealScores(score12, 12);
 
 
+        const items = $items.find('li').toArray(); 
+        shuffleArray(items); 
+        $items.empty().append(items);
+
 
 
     </script>
