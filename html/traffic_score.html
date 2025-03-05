@@ -60,6 +60,7 @@
         <script type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script type="text/javascript" charset="UTF-8" src="../libjscss/toptip/toptip.js"></script>
         <script type="text/javascript" charset="UTF-8" src="../libjscss/simple/simple.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../js/traffic.js"></script>
 
     </div>
 
@@ -67,30 +68,6 @@
         var toptip = new TopTip();
 
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i >= 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-        /**
-         * @items [{txt, lbl}]
-         */
-        function dealItems(items) {
-            let $items = $("#items");
-            shuffleArray(items);
-            for (const item of items) {
-                let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill d-none lbl"></span></li>');
-                $i.find(".txt").text(item.txt);
-                $i.find(".lbl").text(item.lbl);
-                $items.append($i);
-
-                $i.on("dblclick", function() {
-                    let $li = $(this);
-                    $li.find(".lbl").removeClass("d-none");
-                });
-            }
-        }
 
 
         const score1 = [
@@ -186,7 +163,7 @@
         dealScores(score9, 9);
         dealScores(score12, 12);
 
-        dealItems(items);
+        dealItems($("#items"), items);
 
 
         //const items = $items.find('li').toArray(); 
