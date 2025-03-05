@@ -136,21 +136,6 @@
             "代替实际机动车驾驶人接受交通违法行为处罚和记分牟取经济利益的",
         ];
 
-        //let scores = score1.concat(score3).concat(score6).concat(score9).concat(score12);
-
-        //shuffleArray(scores);
-
-        /*
-        let $items = $("#items");
-        function dealScores(scoreArray, score) {
-            for (const txt of scoreArray) {
-                let $i = $('<li class="list-group-item"><span class="txt"></span><span class="badge text-bg-primary rounded-pill d-none score">88</span></li>');
-                $i.find(".txt").text(txt);
-                $i.find(".score").text(score);
-                $items.append($i);
-            }
-        }
-        */
        let items = [];
        function dealScores(scoreArray, score) {
             for (const txt of scoreArray) {
@@ -166,16 +151,6 @@
         dealItems($("#items"), items);
 
 
-        //const items = $items.find('li').toArray(); 
-        //shuffleArray(items); 
-        //$items.empty().append(items);
-
-        /*
-        $items.find("li").on("dblclick", function() {
-            let $li = $(this);
-            $li.find(".score").removeClass("d-none");
-        });
-        */
 
     </script>
 </body>
