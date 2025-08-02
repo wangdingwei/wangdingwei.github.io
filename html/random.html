@@ -60,7 +60,14 @@
     <script type="text/javascript">
         var toptip = new TopTip();
 
+        function getRand() {
+            let txt = random(1000, 9999);
+            $("#random").text(txt);
+        }
 
+        setInterval(() => {
+            getRand();
+        }, 200);
 
     </script>
 </body>
